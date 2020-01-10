@@ -1,0 +1,38 @@
+baseURL = "http://spdldaemon.github.io/docs"
+languageCode = "en-us"
+title = "test docs site"
+theme = "learn"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+# For FontAwesome in pages
+[markup.goldmark.renderer]
+unsafe= true
+
+[params]
+themeVariant = "stanford"
+
+[[menu.shortcuts]] 
+name = "<i class='fab fa-github'></i> Github Repository"
+identifier = "ds"
+url = "https://github.com/SPDLDaemon/spdl-docs-master"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-bookmark'></i> Hugo Documentation"
+identifier = "hugodoc"
+url = "https://gohugo.io/"
+weight = 20
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-bookmark'></i> Learn Theme Documentation"
+identifier = "learndoc"
+url = "https://learn.netlify.com/en/"
+weight = 25
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-archive'></i> The ME 218 Archive"
+url = "https://me218archive.stanford.edu"
+weight = 30
