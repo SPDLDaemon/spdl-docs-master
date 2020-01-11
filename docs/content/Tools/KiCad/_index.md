@@ -1,6 +1,7 @@
 ---
 title: "KiCad"
 date: 2020-01-09T22:02:37-08:00
+weight: 10
 draft: true
 ---
 

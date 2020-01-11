@@ -105,3 +105,15 @@ a:hover {
 #sidebar hr {
     border-color: var(--MENU-SECTION-HR-color);
 }
+
+div.notices.warning p:first-child:before {
+    content: "\f071";
+}
+
+div.notices.info p:first-child:before {
+    content: "\f05a";
+}
+
+div.notices.tip p:first-child:before {
+    content: "\f138";
+}

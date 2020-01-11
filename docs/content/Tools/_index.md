@@ -6,7 +6,7 @@ chapter = true
 pre = "<b>1. </b>"
 +++
 
-### Chapter 1
+<!-- ### Chapter 1 -->
 
 # Tools
 
