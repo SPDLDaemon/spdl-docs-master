@@ -18,7 +18,7 @@ themeVariant = "stanford"
 name = "<i class='fab fa-github'></i> Github Repository"
 identifier = "ds"
 url = "https://github.com/SPDLDaemon/spdl-docs-master"
-weight = 10
+weight = 19
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-bookmark'></i> Hugo Documentation"
@@ -35,4 +35,4 @@ weight = 25
 [[menu.shortcuts]]
 name = "<i class='fas fa-archive'></i> The ME 218 Archive"
 url = "https://me218archive.stanford.edu"
-weight = 30
+weight = 18

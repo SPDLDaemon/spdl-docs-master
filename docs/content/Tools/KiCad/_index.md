@@ -2,12 +2,14 @@
 title: "KiCad"
 date: 2020-01-09T22:02:37-08:00
 weight: 10
-draft: true
+draft: false
 ---
 
 
-KiCad is an open-source software tool for the creation of electronic schematic diagrams and PCB artwork. 
-Beneath its singular surface, KiCad incorporates an elegant ensemble of the following stand-alone software tools:
+KiCad[^1] is an open-source software tool for the creation of electronic schematic diagrams and PCB artwork. 
+Although essentially treated as one program, KiCad is really more of a tight grouping of the following stand-alone software tools:
+
+[^1]: Pronounced 'Key-CAD'.
 
 | Program name | Description | File extension |
 | ------------ | ----------- | -------------- |
@@ -19,12 +21,16 @@ Beneath its singular surface, KiCad incorporates an elegant ensemble of the foll
 | PCB Calculator | Calculator for components, track width, electrical spacing, color codes, and more... | None |
 | Pl Editor | Page layout editor | *.kicad_wks |
 
+The file extension list is not complete and only contains a subset of the files that KiCad supports. It is useful for the basic understanding of which files are used for each KiCad application.
+KiCad can be considered mature enough to be used for the successful development and maintenance of complex electronic boards.
 
 {{< figure src="/docs/images/KiCad-home.png" caption="KiCad basic window.  The icon row from left to right corresponds to Eeschema (schematic and component editors), Pcbnew ( board and footprint editors), GerbView, Bitmap2Component, PCB Calculator, and Pl Editor." >}}
 
 
-The file extension list is not complete and only contains a subset of the files that KiCad supports. It is useful for the basic understanding of which files are used for each KiCad application.
-KiCad can be considered mature enough to be used for the successful development and maintenance of complex electronic boards.
+{{% notice note %}}
+This tutorial is written using KiCad 5.0.0 on Windows 10.  While significant changes are unlikely, be aware that small details may change if your install is different.
+{{% /notice %}}
+
 
 KiCad does not present any board-size limitation and it can easily handle up to 32 copper layers, up to 14 technical layers and up to 4 auxiliary layers. KiCad can create all the files necessary for building printed boards, Gerber files for photo-plotters, drilling files, component location files and a lot more.
 

@@ -10,4 +10,4 @@ pre = "<b>1. </b>"
 
 # Tools
 
-Tutorials, Tips, and Tricks for the various software and hardware tools you might encounter.
+Tutorials, Tips, and Tricks for the various software and hardware tools you might encounter in lab.
