@@ -30,13 +30,12 @@ The keyboard shortcuts you'll be using most frequently for schematics are:
 
 1. We will now place our first component. Click on the 'Place symbol' icon ![add component icon](add_component.png?classes=inline) in the right toolbar. You may also press the 'Add Symbol' hotkey <kbd>a</kbd>.
 
-1. Click on the middle of your schematic sheet. A *Choose Symbol* window will appear on the screen. Note that several thousand schematic symbols may be loaded, so make frequent use of search.
+1. Click on the middle of your schematic sheet. A *Choose Symbol* window will appear on the screen. Note that several thousand schematic symbols may be loaded, so make frequent use of search.  
+We’re going to place a resistor. Search / filter on the 'R' of Resistor. You may notice the 'Device' heading above the Resistor. This 'Device' heading is the name of the library where the component is located, which is quite a generic and useful library.
 
 {{% notice tip %}} 
 Once you use a symbol, it will be listed at the top with other recently used symbols, making filling in passives easier. 
 {{% /notice %}}
-
-We’re going to place a resistor. Search / filter on the 'R' of Resistor. You may notice the 'Device' heading above the Resistor. This 'Device' heading is the name of the library where the component is located, which is quite a generic and useful library.
  
 ![Add symbol window](addsymbol_resistor.png)
  
@@ -89,17 +88,17 @@ In general, it is recommended to use a grid of 50.0 mils for the schematic sheet
 
 1. Repeat the add-component steps, however this time select the 'teensya' library instead of the 'Device' library and pick the 'Teensy-LC' component.
 
-1. Hover the mouse over the microcontroller component. Notice that <kbd>x</kbd> and <kbd>y<kbd> again flip the component. Keep the symbol mirrored around the Y axis so that pins 5 and 6 ('3\_RX1\_PWM\_Touch' and '4\_TX1\_PWM\_Touch') point to the right.
+1. Hover the mouse over the microcontroller component. Notice that <kbd>x</kbd> and <kbd>y</kbd> again flip the component. Keep the symbol mirrored around the Y axis so that pins 5 and 6 (`3_RX1_PWM_Touch` and `4_TX1_PWM_Touch`) point to the right.
 
 1. Repeat the add-component steps, this time choosing the 'Device' library and picking the 'LED' component from it.
 
-1. Add another component, this time 'Conn_01x03_Male'.  This is a generic 3-pin connector.
+1. Add another component, this time `Conn_01x03_Male`.  This is a generic 3-pin connector.
 
 1. Organise all components on your schematic sheet as shown below.
 
 ![Component layout image](layout_1.png)
 
-23. The component identifier 'J?' will appear above the 'Conn_01x03_Male' label. If you want to change its position, right click on 'J?' and click on 'Move Field' (equivalent to <kbd>m</kbd>). It might be helpful to zoom in before/while doing this. Reposition 'J?' under the component as shown below. Labels can be moved around as many times as you please.
+23. The component identifier 'J?' will appear above the `Conn_01x03_Male` label. If you want to change its position, right click on 'J?' and click on 'Move Field' (equivalent to <kbd>m</kbd>). It might be helpful to zoom in before/while doing this. Reposition 'J?' under the component as shown below. Labels can be moved around as many times as you please.
 
 ![Moved label](move_label.png)
 

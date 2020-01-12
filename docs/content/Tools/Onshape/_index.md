@@ -44,7 +44,7 @@ Unless you're very interested in writing your own custom code, don't "Make a cop
 ## Using Onshape to make a Laser-cut Thing
 As an example, we'll go through the process of getting the basic shape of my ME218 project, [Big Game Hunting](https://biggamehunting218.weebly.com/mechanical.html), drawn up in Onshape and then exported to cut on a laser.
 
-### CAD the Geometry
+### CAD the Base Geometry
 We'll start by creating the solid model of the parts we want, before setting up to cur them on a laser.
 
 #### So What is a Part Studio Anyway?
@@ -92,6 +92,17 @@ Extrude non-intersecting plates across the volume, using the "terminate at face"
 These plates will end up covering the insides of the box. For each, sketch and extrude a plate of thickness #plate_thin.
 Your box should now look something like this.
 
+### Assemble and Create Connections
+In this particular case, you could make all mirror copies of parts in the part studio.
+Particularly if you know that the left and right sides will be different, for instance.
+However, we're going to proceed as though the sides will be identical geometry just to demonstrate the principle.
+
+
+#### Assemble the Parts
+
+#### Create an In-Context Part Studio
+This in-context part studio will allow us to make joints on the assembled components, as well as be the starting point for laying them out to cut.
+
 #### Add T-Slot Connections for the Facing Plates
 We want the facing plates to be removable so you can get at the insides. One way to do this, though by no means the only, is to use bolted edge connections through the facing plates into the edge plates.
 
@@ -107,26 +118,24 @@ The lasers on campus cut along the centerline. To get nominal-size parts, we'll 
 
 Add a Kerf Compensation feature, select the "By Thickness" mode, and enter one of the plate thicknesses you input earlier. I find that for 1/4"/6mm materials, using a kerf of 0.01" and an allowance of 0.001" works well; keep the same allowance and assume a 0.008" kerf for 1/8"/3mm parts. To be extra precise, cut a test square in your material on your laser and measure the kerf.
 
-#### Export DXFs
+
+### Nest the Partss for Cutting
+You now have an assembly with all joints computed, and you need to get them to a laser.  Our first approach will be the autolayout feature
+
+#### Autolayout
+
+
+
+#### Create Drawings and Export DXFs
 Before exporting as DXF, measure your actual stock and if necessary update the thickness variables defined at the top of the document. If you've been using those variables everywhere, this should be a really easy way to compensate for odd material thicknesses and get the joints sized so they almost snap-fit (e.g. I find the 1/4" Duron from PRL is usually not quite 1/4" or 6mm).
 To export a part, simply right-click a face and choose "Export as DXF/DWG..." and download. Since the laser joint is order dependent, symmetric parts will not necessarily have symmetric joints, so export each part individually.
 
+{{% notice info %}}
+Here's some text
 
+And some more
+{{% /notice %}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Nest the DXFs for Cutting
 You now have a bunch of DXFs for each individual part. Now we need to lay these out efficiently so that we can make the most of the material when we cut. This operation is called "nesting."
 
 There's a couple solutions here. The easiest , and first thing to try is to use the Onshape Auto Layout feature, but this only gives good results if all of your parts are reasonably close to rectangular.
@@ -147,3 +156,6 @@ Hit execute, and wait for the run to stop.
 The resulting dialog will show the number of nested parts at top right; make sure everything worked.
 Look through the sheets and make sure everything looks reasonable; sometimes there's a bug and a part is nested outside the allowed area. Usually this can be fixed by clicking "all results" and choosing a different solution which doesn't have the issue.
 Highlight each sheet and then hit "Save Sheet" to save the cut file. Note that this includes the outline of the sheet in the file; you may need to use other software to remove this outline so it is not cut. You can then take this output DXF to the laser cutter.
+
+---
+Contributed by Arul Suresh, January 2020.
