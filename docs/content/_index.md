@@ -1,7 +1,6 @@
 ---
 title: "The SPDL Docs Repository"
 date: 2020-01-09T20:03:06-08:00
-draft: true
 ---
 
 # The SPDL Docs Repository

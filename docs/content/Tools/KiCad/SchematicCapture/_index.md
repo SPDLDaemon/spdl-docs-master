@@ -130,11 +130,11 @@ If you want to reposition wired components, it is important to use <kbd>g</kbd> 
 
 30. We will now consider an alternative way of making a connection using labels. Pick a net labelling tool by clicking on the 'Place net label' icon ![Add net label icon](add_line_label.png?classes=inline) on the right toolbar. You can also use <kbd>l</kbd>.
 
-1. Click in the middle of the wire connected to pin 6 of the microcontroller. Name this label 'INPUT'. The label is still an independent item which you can for example move, rotate and delete. The small anchor rectangle of the label must be exactly on a wire or a pin for the label to take effect.
+1. Click the wire connected to the resistor which we connected to pin 6 of the microcontroller. Name this label 'INPUT'. The label is still an independent item which you can for example move, rotate and delete. The small anchor rectangle of the label must be exactly on a wire or a pin for the label to take effect.
 
-1. Follow the same procedure and place another label on the wire to pin 2 of the connector. Also name it 'INPUT'. The two labels, having the same name, create an invisible connection between pin 2 of the connector and the 100 ohm resistor. This is a useful technique when connecting wires in a complex design where drawing the lines would make the whole schematic messier. To place a label you do not necessarily need a wire, you can simply attach the label to a pin.
+1. Follow the same procedure and place another label on the wire to pin 2 of the connector. Also name it 'INPUT'. The two labels, having the same name, create an invisible connection between pin 2 of the connector and the 100&#8239;&#8486; resistor. This is a useful technique when connecting wires in a complex design where drawing the lines would make the whole schematic messier. To place a label you do not necessarily need a wire, you can simply attach the label to a pin.
 
-1. Labels can also be used to simply label wires for informative purposes. Place a label on pin 5 of the PIC. Enter the name 'uCtoLED'. Name the wire between the resistor and the LED as 'LEDtoR'.
+1. Labels can also be used to simply label wires for informative purposes. Place a label on pin 5 of the Teensy. Enter the name 'uCtoLED'. Name the wire between the resistor and the LED as 'LEDtoR'.
 
 1. You do not have to label the VCC and GND lines because the labels are implied from the power objects they are connected to.
 
@@ -155,7 +155,7 @@ KiCad can also run an electrical rules check (ERC) to catch obvious mistakes; to
 
 1. First deal with unconnected wires. Any pin or wire that is not connected will generate a warning when checked by KiCad. To avoid these warnings you can either instruct the program that the unconnected wires are deliberate or manually flag each unconnected wire or pin as unconnected.
 
-1. Click on the 'Place no connection flag' icon ~[no connection icon](noconn.png?classes=inline) on the right toolbar. Click on the unconnected pins. An X will appear to signify that the lack of a wire connection is intentional.
+1. Click on the 'Place no connection flag' icon ![no connection icon](noconn.png?classes=inline) on the right toolbar. Click on the unconnected pins. An X will appear to signify that the lack of a wire connection is intentional.
 
 1. It is now necessary to add a 'Power Flag' to indicate to KiCad that power comes in from somewhere. Press <kbd>a</kbd> and search for 'PWR_FLAG' which is in 'power' library. Place two of them. Connect them to a GND pin and to VCC as shown below.
 

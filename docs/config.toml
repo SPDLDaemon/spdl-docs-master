@@ -1,6 +1,6 @@
 baseURL = "http://spdldaemon.github.io/docs"
 languageCode = "en-us"
-title = "test docs site"
+title = "The SPDL Docs Repository"
 theme = "learn"
 
 # For search functionality

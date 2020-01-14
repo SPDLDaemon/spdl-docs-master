@@ -16,23 +16,23 @@
 <meta name="msapplication-TileColor" content="#8c1515">
 <meta name="msapplication-config" content="/docs/images/favicon/browserconfig.xml">
 <meta name="theme-color" content="#8c1515">
-    <title>Magnetic Field Sensing :: test docs site</title>
+    <title>Magnetic Field Sensing :: The SPDL Docs Repository</title>
 
     
-    <link href="/docs/css/nucleus.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/fontawesome-all.min.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/hybrid.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/featherlight.min.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/perfect-scrollbar.min.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/auto-complete.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/atom-one-dark-reasonable.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/theme.css?1578880960" rel="stylesheet">
-    <link href="/docs/css/hugo-theme.css?1578880960" rel="stylesheet">
+    <link href="/docs/css/nucleus.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/fontawesome-all.min.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/hybrid.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/featherlight.min.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/perfect-scrollbar.min.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/auto-complete.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/atom-one-dark-reasonable.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/theme.css?1578960399" rel="stylesheet">
+    <link href="/docs/css/hugo-theme.css?1578960399" rel="stylesheet">
     
-      <link href="/docs/css/theme-stanford.css?1578880960" rel="stylesheet">
+      <link href="/docs/css/theme-stanford.css?1578960399" rel="stylesheet">
     
 
-    <script src="/docs/js/jquery-3.3.1.min.js?1578880960"></script>
+    <script src="/docs/js/jquery-3.3.1.min.js?1578960399"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -237,14 +237,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/docs/js/lunr.min.js?1578880960"></script>
-<script type="text/javascript" src="/docs/js/auto-complete.js?1578880960"></script>
+<script type="text/javascript" src="/docs/js/lunr.min.js?1578960399"></script>
+<script type="text/javascript" src="/docs/js/auto-complete.js?1578960399"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/spdldaemon.github.io\/docs";
     
 </script>
-<script type="text/javascript" src="/docs/js/search.js?1578880960"></script>
+<script type="text/javascript" src="/docs/js/search.js?1578960399"></script>
 
     
   </div>
@@ -279,49 +279,6 @@
           
           
         
-          
-            
-            
-
-
- 
-  
-    
-    <li data-nav-id="/docs/tools/onshape/" title="Onshape" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/docs/tools/onshape/">
-          Onshape
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/docs/tools/testnote/" title="Pages organization" class="dd-item ">
-        <a href="/docs/tools/testnote/">
-        Pages organization
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
           
             
             
@@ -620,10 +577,7 @@
 
 
 
-	<p>If this looks overly mathematical, don’t worry, you can certainly skip the math and get something working by trial and error as is commonly done.<br>
-If you take this approach, you still might want to check out the section on matching your coil resonance to the track frequency to minimize noise picked up from other sources.<br>
-Either way, it’s usually helpful to understand the underlying physics when it comes to troubleshooting or improving your sensors.<br>
-Also, some quick, back of the envelope calculations can often get you in the ballpark a lot quicker than random experimentation.</p>
+	<p>If this looks overly mathematical, don’t worry, you can certainly skip the math and get something working by trial and error as is commonly done. If you take this approach, you still might want to check out the section on matching your coil resonance to the track frequency to minimize noise picked up from other sources. Either way, it’s usually helpful to understand the underlying physics when it comes to troubleshooting or improving your sensors. Also, some quick, back of the envelope calculations can often get you in the ballpark a lot quicker than random experimentation.</p>
 <h3 id="basic-em">Basic E&amp;M</h3>
 <p>A current flowing in an infinite wire will generate a magnetic field that circles around  the wire (in a direction given by the right hand rule – align your thumb with the current, and your fingers point in the <em>B</em> field direction) whose strength drops off with \(1/r\):</p>
 <p>$$B=\frac{\mu_0 i}{2\pi r}$$</p>
@@ -635,87 +589,52 @@ Also, some quick, back of the envelope calculations can often get you in the bal
 <h3 id="detection">Detection</h3>
 <p>An easy way to detect a magnetic field is to take advantage of the fact that when the magnetic flux in a loop of wire changes, a voltage is generated in the coil that is proportional to the rate of change:</p>
 <p>$$ \begin{aligned} V &amp;= -\frac{\partial\Phi}{\partial t} \\ \Phi &amp;= B \cdot A\end{aligned} $$</p>
-<p>where \(B\) is the magnetic field, and \(A\) is the coil area.
-We assume that \(B\) is constant over the area of the coil, which is a good approximation when the coils are small.</p>
+<p>where \(B\) is the magnetic field, and \(A\) is the coil area. We assume that \(B\) is constant over the area of the coil, which is a good approximation when the coils are small.</p>
 <p>Calculating the peak induced voltage for a 1 cm diameter coil located 10 cm from the wire, we get:</p>
 <p>$$ \begin{aligned} V &amp;= -\frac{\partial}{\partial t} \left( \frac{\mu_0}{2\pi r} \cdot 0.1 \sin \omega t \right) \cdot A \\ &amp;= \omega \cdot \left( \frac{\mu_0}{2\pi r} \cdot 0.1 \cos \omega t \right) \cdot A \\ V_\mathrm{peak} &amp;= 2.52 \thinspace \mathrm{\mu V} \end{aligned} $$</p>
 <!-- need to figure out upright mu here -->
-<p>which is a miniscule value, and would not be able to see it on a typical oscilloscope with 5 mV resolution.
-To increase your signal, you can connect several of these sensor loops in series.
-If you have \(N\) turns on your coil, you will get an induced voltage that is \(N\) times larger than the result for a single loop.
-With 1000 coils on the same sensor as above, you would see 2.52 mV, which is something you can work with.
-This still needs amplification, but a relatively simple op-amp circuit will do.</p>
+<p>which is a miniscule value, and would not be able to see it on a typical oscilloscope with 5 mV resolution. To increase your signal, you can connect several of these sensor loops in series. If you have \(N\) turns on your coil, you will get an induced voltage that is \(N\) times larger than the result for a single loop. With 1000 coils on the same sensor as above, you would see 2.52 mV, which is something you can work with. This still needs amplification, but a relatively simple op-amp circuit will do.</p>
 <p>So at some fixed distance from the wire, there are two things you can do to increase your signal—increase coil area or number of turns:</p>
 <p>$$ V \propto N \cdot A $$</p>
 <h3 id="coils-as-inductors">Coils as Inductors</h3>
-<p>Any time you have a coil, you also ahve an inductor. 
-For a coil with length much greater than diameter, the inductance is:</p>
+<p>Any time you have a coil, you also have an inductor. For a coil with length much greater than diameter, the inductance is:</p>
 <p>$$ L = \frac{\mu_0 A N^2}{l} $$</p>
 <p>where \(A\) is the coil area, \(N\) the number of turns, and \(l\) the length of the coil.</p>
-<p>For a practical coil that may have a length similar in magnitude to the diameter, this is only an approximation good to within a factor of 2 or so.
-To increase the inductance, inductors are often wound around core materials.
-These cores effectively amplify the magnetic field (and therefore inductance), by anywhere from factors of 10s to 1000s.
-Iron is commonly used at low frequencies, and ferrite is used at higher frequencies.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<p>Also, real inductors always have some capacitance, resulting from the numerous turns of wire wound next to one another.
-There is always capacitance between two neighboring wires, increasing with decreasing separation.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>
-This capacitance can easily be on the order of 10s to 100s of pF for a peanut-sized coil.</p>
+<p>For a practical coil that may have a length similar in magnitude to the diameter, this is only an approximation good to within a factor of 2 or so. To increase the inductance, inductors are often wound around core materials. These cores effectively amplify the magnetic field (and therefore inductance), by anywhere from factors of 10s to 1000s. Iron is commonly used at low frequencies, and ferrite is used at higher frequencies.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>Also, real inductors always have some capacitance, resulting from the numerous turns of wire wound next to one another. There is always capacitance between two neighboring wires, increasing with decreasing separation.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> This capacitance can easily be on the order of 10s to 100s of pF for a peanut-sized coil.</p>
 <p><img src="inductor_model.png" alt="Model of real inductor"></p>
-<p>You might think, &lsquo;who cares about picoFarads anyways&rsquo;—that is, until you see a mysterious high frequency ringing on a coil that you thought was an ideal inductor.
-You may be able to see this with sensors that are not designed to resonate at the track frequency (as described below) but resonate at some other frequency (ie: the “self-resonant” frequency that depends on coil capacitance &amp; inductance).
-A simple model of what this can look like can be generated in circuitmaker:</p>
+<p>You might think, &lsquo;who cares about picoFarads anyways&rsquo;—that is, until you see a mysterious high frequency ringing on a coil that you thought was an ideal inductor. You may be able to see this with sensors that are not designed to resonate at the track frequency (as described below) but resonate at some other frequency (ie: the “self-resonant” frequency that depends on coil capacitance &amp; inductance). A simple model of what this can look like can be generated in circuitmaker:</p>
 <p><img src="ringing_model.png" alt="Simulation model for inductor"></p>
-<p>The sinusoidal source is simulating the signal from the track, the lower magnitude square wave source is simulating quick noise pulses that might be generated from motor switching, etc.
-The resulting waveforms show hi-frequency ringing at the self-resonant frequency (triggered by the noise spikes) riding on top of the desired 20kHz signal waveform:</p>
+<p>The sinusoidal source is simulating the signal from the track, the lower magnitude square wave source is simulating quick noise pulses that might be generated from motor switching, etc. The resulting waveforms show hi-frequency ringing at the self-resonant frequency (triggered by the noise spikes) riding on top of the desired 20kHz signal waveform:</p>
 <p><img src="ringing_data.png" alt="Data from inductor simulation"></p>
 <h3 id="lc-resonance-and-signal-amplification">LC Resonance and Signal Amplification</h3>
-<p>You can make a functional sensor using a coil as described above, although it may need to be pretty big (large area, lots of turns) in order to give you a signal large enough to work with.<br>
-By adding a capacitor in parallel with your coil (and effectively in parallel with the internal coil capacitance), you can make a circuit that resonates at the track frequency.<br>
-The frequency of this resonance is given by:</p>
+<p>You can make a functional sensor using a coil as described above, although it may need to be pretty big (large area, lots of turns) in order to give you a signal large enough to work with. By adding a capacitor in parallel with your coil (and effectively in parallel with the internal coil capacitance), you can make a circuit that resonates at the track frequency. The frequency of this resonance is given by:</p>
 <p>$$ f = \frac{1}{2\pi\sqrt{LC}} $$</p>
-<p>The effect of this is that a small signal from the track can drive a much larger oscillation in the parallel inductor capacitor circuit, which is easier to detect.<br>
-The effective amplification of a circuit like this can easily be on the order of 10-100.<br>
-You can model the induced voltage in the coil as a sinusoidal voltage source in series with the inductor:<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p>The effect of this is that a small signal from the track can drive a much larger oscillation in the parallel inductor capacitor circuit, which is easier to detect. The effective amplification of a circuit like this can easily be on the order of 10-100. You can model the induced voltage in the coil as a sinusoidal voltage source in series with the inductor:<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <p><img src="parallel_LC.png" alt="Model of parallel LC circuit"></p>
 <p>If you could build this circuit and then swept the frequency knob on the function generator, you’d get a plot of \(V_\mathrm{in}/V_\mathrm{out}\) vs. frequency that looks like:</p>
 <p><img src="freqresp.png" alt="Parallel LC circuit frequency response"></p>
 <p>If you actually used ideal components<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> and turned the knob very slowly, you’d find that the peak at 20 kHz was infinite.</p>
-<p>This measure of the sharpness of resonance is called the quality factor, or Q, of the circuit.
-For this circuit, it is infinite.
-Q is defined as the resonant frequency divided by the width in frequency units of the curve at the point where it is \(1/\sqrt{2}=0.707\) times the maximum value.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
-<p>Suppose all the ideal inductors are used up and you have to order a real inductor from Digi-Key.
-You find that it has 26Ω of resistance due to the many turns of thin wire.
-You plug this into your circuitmaker model:</p>
+<p>This measure of the sharpness of resonance is called the quality factor, or Q, of the circuit. For this circuit, it is infinite. Q is defined as the resonant frequency divided by the width in frequency units of the curve at the point where it is \(1/\sqrt{2}=0.707\) times the maximum value.<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
+<p>Suppose all the ideal inductors are used up and you have to order a real inductor from Digi-Key. You find that it has 26Ω of resistance due to the many turns of thin wire. You plug this into your circuitmaker model:</p>
 <p><img src="real_parallel_LC.png" alt="Model of real-world parallel LC circuit"></p>
 <p>and get this response:</p>
 <p><img src="real_freqresp.png" alt="Real parallel LC circuit frequency response"></p>
-<p>Now instead of having an infinite peak, the resonant circuit amplifies the field signal by about 40.
-Since the peak is no longer infinite, you happily calculate Q to be 40.
-Another handy Q formula for a series resistor like this is:</p>
+<p>Now instead of having an infinite peak, the resonant circuit amplifies the field signal by about 40. Since the peak is no longer infinite, you happily calculate Q to be 40. Another handy Q formula for a series resistor like this is:</p>
 <p>$$ Q = \frac{2\pi\omega_\mathrm{res} L}{R} $$</p>
-<p>Now, suppose Mark Merlo was playing with the function generator and tweaked the frequency knob so it’s generating 21 kHz instead of 20 kHz.
-Now the gain of the resonant circuit goes from 40 down to 9, just after you spent hours calibrating your code to work with a gain of 40.
-So that’s problem #1: your circuit is sensitive to small changes in track frequency.
-Eventually, Sara figures out what the deal is and recalibrates the knob to 20.0001 kHz.
-Luis is just starting to build his circuit but Brandon stole all of his capacitors to extend the range of the electric banana.
-Fortunately, he manages to find a pair with the exact value he needs in the cabinet of freedom, and they even have a ±5 % tolerance (good as far as capacitors go).
-Suppose one of the caps is dead on the labeled value, and the other is 5 % high, so that circuit will have a resonant frequency of 19.5 kHz.
-Now the gain will be approximately 17 for that sensor and 40 for the other sensor—not a very well matched pair of sensors.</p>
-<p>These undesirable effects of a sharp resonance peak can mitigated by lowering the Q even more, which flattens out the peak.
-An easy way to do this is with a parallel resistor:</p>
+<p>Now, suppose Mark Merlo was playing with the function generator and tweaked the frequency knob so it’s generating 21 kHz instead of 20 kHz. Now the gain of the resonant circuit goes from 40 down to 9, just after you spent hours calibrating your code to work with a gain of 40. So that’s problem #1: your circuit is sensitive to small changes in track frequency. Eventually, Sara figures out what the deal is and recalibrates the knob to 20.0001 kHz. Luis is just starting to build his circuit but Brandon stole all of his capacitors to extend the range of the electric banana. Fortunately, he manages to find a pair with the exact value he needs in the cabinet of freedom, and they even have a ±5 % tolerance (good as far as capacitors go). Suppose one of the caps is dead on the labeled value, and the other is 5 % high, so that circuit will have a resonant frequency of 19.5 kHz. Now the gain will be approximately 17 for that sensor and 40 for the other sensor—not a very well matched pair of sensors.</p>
+<p>These undesirable effects of a sharp resonance peak can mitigated by lowering the Q even more, which flattens out the peak. An easy way to do this is with a parallel resistor:</p>
 <p><img src="detuned.png" alt="Circuit model with parallel detuning resistor"></p>
-<p>If you only have a parallel capacitor (in the location of the 10k&amp;8486; resistor) and replace the 26 ohm capacitor with a wire, the Q is given by:<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
+<p>If you only have a parallel capacitor (in the location of the 10kΩ resistor) and replace the 26 ohm capacitor with a wire, the Q is given by:<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup></p>
 <p>$$ Q = 2\pi f_\mathrm{res} RC $$</p>
 <p>where \(C\) is the total capacitance summing the coil and external capacitances.</p>
 <p>If you have both resistors in the circuit, the resultant Q is well approximated by
 $$ \frac{1}{Q_\mathrm{total}} = \frac{1}{Q_\mathrm{R,series}} + \frac{1}{Q_\mathrm{R,parallel}} $$</p>
 <p>This expression may even be exact, who knows?  Anyways, the peak is quite a bit flatter now so that if the frequency shifts by 1 kHz to 21 kHz, the signal only changes by 20 %, which is a lot better than the factor of 4 we saw above.</p>
 <p><img src="detuned_data.png" alt="Simulated response of detuned circuit"></p>
-<p>This parallel resistor that lowers the Q of the circuit is sometimes called a Q-killer resistor for obvious reasons.
-You’ll want to pick a Q-killer resistor that gives you good amplification without too sharp of a resonant peak which would result in sensitivity to slight frequency variations.</p>
+<p>This parallel resistor that lowers the Q of the circuit is sometimes called a Q-killer resistor for obvious reasons. You’ll want to pick a Q-killer resistor that gives you good amplification without too sharp of a resonant peak which would result in sensitivity to slight frequency variations.</p>
 <h3 id="noise-rejection">Noise Rejection</h3>
-<p>If there is EM noise at frequencies other than the track frequency,<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> it will also generate a signal in your sensors.
-Suppose you have a coil without a resonant capacitor, and the rate of change of magnetic flux from the switched motor current is the same as the rate of change of magnetic flux due to the wire under the track, in the location of your sensor.
-Then an equal voltage will be produced in the sensor, which will show up as noise that is just as large as your signal.
+<p>If there is EM noise at frequencies other than the track frequency,<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> it will also generate a signal in your sensors. Suppose you have a coil without a resonant capacitor, and the rate of change of magnetic flux from the switched motor current is the same as the rate of change of magnetic flux due to the wire under the track, in the location of your sensor. Then an equal voltage will be produced in the sensor, which will show up as noise that is just as large as your signal.
 If your sensor is part of a tuned circuit that amplifies the track frequency by a factor of 10, then the induced noise from the motor will be 1/10 of the track signal, which is a good thing.</p>
 <p>There are a few things you can do to minimize magnetic noise generated by the motor.</p>
 <ol>
@@ -734,51 +653,35 @@ If your sensor is part of a tuned circuit that amplifies the track frequency by 
 </div>
 
 <h3 id="signal-amplification">Signal Amplification</h3>
-<p>After all this work (actually, its not that bad, just a few components soldered in parallel), you’ll still probably want to amplify your signal.
-One feature of the resonant circuits described above is that they do not have very high output impedance—that is, if you try drawing significant currents from them it will load them down and kill the resonance.<br>
-Kind of like sticking a tuning fork in a block of cheese—the fork will not continue to shake the cheese at 1 kHz for minutes.
-Instead, the vibrations will quickly die down to nothing.</p>
+<p>After all this work (actually, its not that bad, just a few components soldered in parallel), you’ll still probably want to amplify your signal. One feature of the resonant circuits described above is that they do not have very high output impedance—that is, if you try drawing significant currents from them it will load them down and kill the resonance. Kind of like sticking a tuning fork in a block of cheese—the fork will not continue to shake the cheese at 1 kHz for minutes. Instead, the vibrations will quickly die down to nothing.</p>
 <p>Two ways to deal with this low-impedance sensor are to buffer the signal or simply use a non-inverting op-amp configuation (as shown below):</p>
 <p><img src="noninverting_opamp.png" alt="Non inverting op-amp"></p>
-<p>As long as the op amp doesn’t saturate (output goes to one rail or the other), this will work pretty well.
-The LM6144s have the &ldquo;interesting&rdquo; property that if an output saturates and the inputs are no longer held at the same voltage (no longer ideal 
+<p>As long as the op amp doesn’t saturate (output goes to one rail or the other), this will work pretty well. The LM6144s have the &ldquo;interesting&rdquo; property that if an output saturates and the inputs are no longer held at the same voltage (no longer ideal 
   <i class="far fa-frown "></i>
-), then the input impedance drops drastically, which can load the sensor down and kill the resonance.<br>
-This can make for some frustrating debugging sessions until you figure out what’s happening.</p>
-<p>Once you’ve amplified the signal, you can either build a peak detector circuit or do the peak detection in software.
-Given the amount of other stuff going on in software, the peak detector circuit is not a bad choice.
-Choose your R &amp; C carefully to give the best compromise between smooth signal and fast response to signal changes:</p>
+), then the input impedance drops drastically, which can load the sensor down and kill the resonance. This can make for some frustrating debugging sessions until you figure out what’s happening.</p>
+<p>Once you’ve amplified the signal, you can either build a peak detector circuit or do the peak detection in software. Given the amount of other stuff going on in software, the peak detector circuit is not a bad choice. Choose your R &amp; C carefully to give the best compromise between smooth signal and fast response to signal changes:</p>
 <p><img src="peakdetect_model.png" alt="Peak detection model"></p>
 <p>Time constant, \(\tau=RC\), too small (excessive ripple):</p>
 <p><img src="peakdetect_small.png" alt="Small time constant plot"></p>
 <p>Time constant, \(\tau=RC\), too large (output doesn't track input):</p>
 <p><img src="peakdetect_large.png" alt="Large time constant plot"></p>
 <h3 id="sensor-locations--sensor-signal-math">Sensor Locations &amp; Sensor Signal Math</h3>
-<p>Once you’ve got your sensors working, where do you put them and what do you do with them?
-First of all, there are three basic sensor orientations.
-We’ll call these the Horizontal, Vertical, and Parallel (referring to the axis of the coil).
-When your sensor axis is parallel with the wire, the field is all perpendicular to the coil, so there is no field component going through the coil, and you get no signal.
-So, you can forget about those.
-Vertical and Horizontal coils are more useful.</p>
+<p>Once you’ve got your sensors working, where do you put them and what do you do with them? First of all, there are three basic sensor orientations. We’ll call these the Horizontal, Vertical, and Parallel (referring to the axis of the coil). When your sensor axis is parallel with the wire, the field is all perpendicular to the coil, so there is no field component going through the coil, and you get no signal. So, you can forget about those. Vertical and Horizontal coils are more useful.</p>
 <p><img src="orientations.png" alt="Coil orientations"></p>
 <p><img src="sensor_location.png" alt="Coil location"></p>
 <p>For a coil that is located a horizontal distance x from the wire and a height h above the wire, the magnitude of the component of the field that is actually passing through the coil (aligned with the coil axis) is given by:</p>
 <p>$$ \begin{aligned} B_\mathrm{h} &amp;= \frac{\mu_0 i h}{2\pi\left(x^2+h^2\right)} \quad \mathrm{horizontal\space{}coil} \\ B_\mathrm{v} &amp;= \frac{\mu_0 i x}{2\pi\left(x^2+h^2\right)} \quad \mathrm{vertical\space{}coil} \end{aligned} $$</p>
 <p>For a horizontal sensor at fixed height \(h_0\), if you plot the normalized signal in the sensor over a range of x values that span \(\pm3h_0\) you will get something looking like:</p>
 <p><img src="horiz_sensor.png" alt="Response from horizontally oriented sensor"></p>
-<p>Suppose you have two sensors, each mounted a distance \(h_0\) from the center of the robot.
-Assume horizontal distance \(x\) increases positively to the right of the wire.
-For a sensor mounted at \(x =  +h_0\), the sensor will be over the wire when the center of the robot is at \(x =  -h_0\), so plotting the right sensor signal as a function of the position of the robot center gives us something like:</p>
+<p>Suppose you have two sensors, each mounted a distance \(h_0\) from the center of the robot. Assume horizontal distance \(x\) increases positively to the right of the wire. For a sensor mounted at \(x =  +h_0\), the sensor will be over the wire when the center of the robot is at \(x =  -h_0\), so plotting the right sensor signal as a function of the position of the robot center gives us something like:</p>
 <p><img src="right_sensor.png" alt="Response from right robot sensor"></p>
-<p>The left sensor signal is found in exactly the same way, and its peak will occur when the center of the robot is at  \(x =  +h_0\).
-If you read these signals into the HC12 and subtract them in software (Left Sensor – Right Sensor), you get a signal which is roughly proportional to the deviation of the robot center from the wire, over a limited range centered about a deviation of 0.</p>
+<p>The left sensor signal is found in exactly the same way, and its peak will occur when the center of the robot is at  \(x =  +h_0\). If you read these signals into the HC12 and subtract them in software (Left Sensor – Right Sensor), you get a signal which is roughly proportional to the deviation of the robot center from the wire, over a limited range centered about a deviation of 0.</p>
 <p><img src="sensor_sum.png" alt="Combined sensor response"></p>
 
 <div class="notices note" ><p>If you use the summed signal for feedback control, be aware that if the wire is not between the sensors, the sense of the signal can invert.  For example, going from \(x=-1\) to \(x=0\), the value of the summed signal is increasing.  However, this is also true when going from \(x=-2\) to \(x=-3\)—away from the wire.  Keep this in mind when deciding how your robot will respond.</p>
 </div>
 
-<p>You can follow the exact same procedure to make plots of vertically mounted sensors, or different horizontal sensor configurations (heights, spacing).
-Similarly, by manipulating your sensor signals with simple math, you may find some resultant signal that works better for whatever you want to do with the position information.</p>
+<p>You can follow the exact same procedure to make plots of vertically mounted sensors, or different horizontal sensor configurations (heights, spacing). Similarly, by manipulating your sensor signals with simple math, you may find some resultant signal that works better for whatever you want to do with the position information.</p>
 <h3 id="other-sensing-tidbits">Other Sensing Tidbits</h3>
 <ol>
 <li>
@@ -872,38 +775,6 @@ Similarly, by manipulating your sensor signals with simple math, you may find so
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -1035,19 +906,19 @@ Similarly, by manipulating your sensor signals with simple math, you may find so
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/docs/js/clipboard.min.js?1578880960"></script>
-    <script src="/docs/js/perfect-scrollbar.min.js?1578880960"></script>
-    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1578880960"></script>
-    <script src="/docs/js/jquery.sticky.js?1578880960"></script>
-    <script src="/docs/js/featherlight.min.js?1578880960"></script>
-    <script src="/docs/js/highlight.pack.js?1578880960"></script>
+    <script src="/docs/js/clipboard.min.js?1578960399"></script>
+    <script src="/docs/js/perfect-scrollbar.min.js?1578960399"></script>
+    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1578960399"></script>
+    <script src="/docs/js/jquery.sticky.js?1578960399"></script>
+    <script src="/docs/js/featherlight.min.js?1578960399"></script>
+    <script src="/docs/js/highlight.pack.js?1578960399"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/docs/js/modernizr.custom-3.6.0.js?1578880960"></script>
-    <script src="/docs/js/learn.js?1578880960"></script>
-    <script src="/docs/js/hugo-learn.js?1578880960"></script>
+    <script src="/docs/js/modernizr.custom-3.6.0.js?1578960399"></script>
+    <script src="/docs/js/learn.js?1578960399"></script>
+    <script src="/docs/js/hugo-learn.js?1578960399"></script>
 
-    <link href="/docs/mermaid/mermaid.css?1578880960" rel="stylesheet" />
-    <script src="/docs/mermaid/mermaid.js?1578880960"></script>
+    <link href="/docs/mermaid/mermaid.css?1578960399" rel="stylesheet" />
+    <script src="/docs/mermaid/mermaid.js?1578960399"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
