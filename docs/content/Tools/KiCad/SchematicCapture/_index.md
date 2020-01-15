@@ -26,7 +26,7 @@ The keyboard shortcuts you'll be using most frequently for schematics are:
 
 1. Let’s begin by creating a schematic. Start the schematic editor Eeschema, ![Eeschema icon](eeschema.png?classes=inline). It is the first button from the left.
 
-1. Click on the 'Page Settings' icon ![Sheet settings icon](sheetset.png?classes=inline) on the top toolbar. Set the appropriate paper size ('A4','8.5x11', etc.) and enter the Title as 'Tutorial'. You will see that more information can be entered here if necessary. Click OK. This information will populate the schematic sheet at the bottom right corner. Use the mouse wheel to zoom in. Save the whole schematic: **File{{< awesome fas fa-long-arrow-alt-right >}}Save**
+1. Click on the 'Page Settings' icon ![Sheet settings icon](sheetset.png?classes=inline) on the top toolbar. Set the appropriate paper size ('A4', '8.5x11', etc.) and enter the Title as 'Tutorial'. You will see that more information can be entered here if necessary. Click OK. This information will populate the schematic sheet at the bottom right corner. Use the mouse wheel to zoom in. Save the whole schematic: **File{{< awesome fas fa-long-arrow-alt-right >}}Save**
 
 1. We will now place our first component. Click on the 'Place symbol' icon ![add component icon](add_component.png?classes=inline) in the right toolbar. You may also press the 'Add Symbol' hotkey <kbd>a</kbd>.
 
@@ -82,11 +82,11 @@ This is because Drag keeps wire connections to the component attached while movi
 In general, it is recommended to use a grid of 50.0 mils for the schematic sheet.
 {{% /notice %}}
 
-16. We are going to add a Teensy to our circuit, which does not have a symbol natively in KiCad. Copy `teensy.lib` into the KiCad project folder. In the EEschema menu, choose **Preferences{{< awesome fas fa-long-arrow-alt-right >}}Manage Symbol Libraries**. In the Symbol Libraries window you can see two tabs: Global Libraries and Project Specific Libraries. Each one has one sym-lib-table file. For a library (.lib file) to be available it must be in one of those sym-lib-table files. If you have a library file in your file system and it’s not yet available, you can add it to either one of the sym-lib-table files. We will now add the Teensy library.
+16. We are going to add a Teensy to our circuit, which does not have a symbol natively in KiCad. Copy `teensy.lib` into the KiCad project folder. In the Eeschema menu, choose **Preferences{{< awesome fas fa-long-arrow-alt-right >}}Manage Symbol Libraries**. In the Symbol Libraries window you can see two tabs: Global Libraries and Project Specific Libraries. Each one has one sym-lib-table file. For a library (.lib file) to be available it must be in one of those sym-lib-table files. If you have a library file in your file system and it’s not yet available, you can add it to either one of the sym-lib-table files. We will now add the Teensy library.
 
 1. Select the Project Specific table. Click the *Browse Libraries...* button below the table. Since you placed the library in the project folder, you should be able to choose and add the `teensy.lib` library and close the window. It will be added to the end of of the list. If you wish you can click its nickname and change it, but 'teensy' is fine for now. Close the Symbol Libraries window with OK.
 
-1. Repeat the add-component steps, however this time select the 'teensya' library instead of the 'Device' library and pick the 'Teensy-LC' component.
+1. Repeat the add-component steps, however this time select the 'teensy' library instead of the 'Device' library and pick the 'Teensy-LC' component.
 
 1. Hover the mouse over the microcontroller component. Notice that <kbd>x</kbd> and <kbd>y</kbd> again flip the component. Keep the symbol mirrored around the Y axis so that pins 5 and 6 (`3_RX1_PWM_Touch` and `4_TX1_PWM_Touch`) point to the right.
 
@@ -104,9 +104,9 @@ In general, it is recommended to use a grid of 50.0 mils for the schematic sheet
 
 24. It is time to place the power and ground symbols. Click on the 'Place power port' button ![Add power icon](add_power.png?classes=inline) on the right toolbar. Alternatively, press <kbd>p</kbd>. In the component selection window, scroll down and select 'VCC' from the 'power' library. Click OK.
 
-1. Click above the pin of the 1k resistor to place the VCC part. Click on the area above and to the left of the Teensy. In the 'Component Selection history' section select 'VCC' and place it to the left of the microcontroller. Repeat the add process again and place a VCC part above pin 1 of the connector. Move references and values out of the way if needed.
+1. Click above the pin of the {{< units 1 kohm >}} resistor to place the VCC part. Click on the area above and to the left of the Teensy. In the 'Component Selection history' section select 'VCC' and place another to the left of the microcontroller. Repeat the add process again and place a VCC part above pin 1 of the connector. Move references and values out of the way if needed.
 
-1. Repeat the add-pin steps but this time select the GND part. Place a GND part under pin 3 of the connector. Place another GND symbol below and to the left of the microcontroller. Your schematic should now look something like this:
+1. Repeat the add power symbol steps but this time select the GND part. Place a GND part under pin 3 of the connector. Place another GND symbol below and to the left of the microcontroller. Your schematic should now look something like this:
 
 ![Component layout image](layout_2.png)
 
@@ -132,7 +132,7 @@ If you want to reposition wired components, it is important to use <kbd>g</kbd> 
 
 1. Click the wire connected to the resistor which we connected to pin 6 of the microcontroller. Name this label 'INPUT'. The label is still an independent item which you can for example move, rotate and delete. The small anchor rectangle of the label must be exactly on a wire or a pin for the label to take effect.
 
-1. Follow the same procedure and place another label on the wire to pin 2 of the connector. Also name it 'INPUT'. The two labels, having the same name, create an invisible connection between pin 2 of the connector and the 100&#8239;&#8486; resistor. This is a useful technique when connecting wires in a complex design where drawing the lines would make the whole schematic messier. To place a label you do not necessarily need a wire, you can simply attach the label to a pin.
+1. Follow the same procedure and place another label on the wire to pin 2 of the connector. Also name it 'INPUT'. The two labels, having the same name, create an invisible connection between pin 2 of the connector and the {{< units 100 ohm >}} resistor. This is a useful technique when connecting wires in a complex design where drawing the lines would make the whole schematic messier. To place a label you do not necessarily need a wire, you can simply attach the label to a pin.
 
 1. Labels can also be used to simply label wires for informative purposes. Place a label on pin 5 of the Teensy. Enter the name 'uCtoLED'. Name the wire between the resistor and the LED as 'LEDtoR'.
 
@@ -144,7 +144,7 @@ If you want to reposition wired components, it is important to use <kbd>g</kbd> 
 
 36. Sometimes it is good to write comments here and there. To add comments on the schematic use the 'Place text' icon ![place text icon](text.png?classes=inline) on the right toolbar.
 
-1. All components now need to have unique identifiers. In fact, many of our components are still named 'R?' or 'J?'. Identifier assignation can be done automatically by clicking on the 'Annotate schematic symbols' icon ~[annotate symbols icon](annotate.png?classes=inline) on the top toolbar.
+1. All components now need to have unique identifiers, so let's rename all of those components still named 'R?' or 'J?'. Identifier assignation can be done automatically by clicking on the 'Annotate schematic symbols' icon ~[annotate symbols icon](annotate.png?classes=inline) on the top toolbar.
 
 1. In the Annotate Schematic window, select 'Use the entire schematic' and click on the 'Annotate' button. Click 'Close'. Notice how all the '?' have been replaced with numbers. Each identifier is now unique. In our example, they have been named 'R1', 'R2', 'U1', 'D1' and 'J1'.
 

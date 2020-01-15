@@ -21,8 +21,7 @@ Although essentially treated as one program, KiCad is really more of a tight gro
 | PCB Calculator | Calculator for components, track width, electrical spacing, color codes, and more... | None |
 | Pl Editor | Page layout editor | *.kicad_wks |
 
-The file extension list is not complete and only contains a subset of the files that KiCad supports. It is useful for the basic understanding of which files are used for each KiCad application.
-KiCad can be considered mature enough to be used for the successful development and maintenance of complex electronic boards.
+The file extension list is not complete and only contains a subset of the files that KiCad supports. It is useful for the basic understanding of which files are used for each KiCad application. KiCad is mature open-source software, and is robust enough for typical use in lab as well as for more involved, complex electronic board designs.
 
 {{< figure src="/docs/images/KiCad-home.png" caption="KiCad basic window.  The icon row from left to right corresponds to Eeschema (schematic and component editors), Pcbnew ( board and footprint editors), GerbView, Bitmap2Component, PCB Calculator, and Pl Editor." >}}
 
@@ -32,7 +31,7 @@ This tutorial is written using KiCad 5.0.0 on Windows 10.  While significant cha
 {{% /notice %}}
 
 
-KiCad does not present any board-size limitation and it can easily handle up to 32 copper layers, up to 14 technical layers and up to 4 auxiliary layers. KiCad can create all the files necessary for building printed boards, Gerber files for photo-plotters, drilling files, component location files and a lot more.
+KiCad does not present any board-size limitation and it can easily handle up to 32 copper layers, up to 14 technical layers and up to 4 auxiliary layers. KiCad can create all the files necessary for building printed boards, Gerber files for photo-plotters, drilling files, component location files and a lot more. KiCad also incorporates ngspice, an open-source circuit simulator. 
 
 Being open source (GPL licensed), KiCad represents the ideal tool for projects oriented towards the creation of electronic hardware with an open-source flavour.
 

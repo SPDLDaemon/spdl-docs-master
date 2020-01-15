@@ -7,6 +7,10 @@ draft: true
 
 In **Hugo**, pages are the core of your site. Once it is configured, pages are definitely the added value to your documentation site.
 
+### Test units macro
+
+units macro here: {{< units 10 Mohm >}}.
+
 ## Folders
 
 Organize your site like [any other Hugo project](https://gohugo.io/content/organization/). Typically, you will have a *content* folder with all your pages.

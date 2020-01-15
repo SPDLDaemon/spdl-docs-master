@@ -1,0 +1,15 @@
+{{ if .Get 0}}
+  <i class="units" >
+    {{- index .Params 0 -}}&thinsp;
+	{{- if strings.HasSuffix (.Get 1) "ohm" -}}
+	  {{- strings.TrimSuffix "ohm" (.Get 1) -}}&Omega;
+	{{- else if strings.HasSuffix (.Get 1) "percent" -}}
+	  {{- strings.TrimSuffix "percent" (.Get 1) -}}%
+	{{- else -}}
+	  {{- .Get 1 }}
+	{{- end -}}
+  </i>
+{{ else }}
+  <span class="shortcode-error">Shortcode usage: &lbrace;&lbrace;&lt; units 
+  value unit &gt;&rbrace;&rbrace;</span>
+{{ end }}

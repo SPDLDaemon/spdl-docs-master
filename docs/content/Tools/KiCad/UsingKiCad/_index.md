@@ -37,7 +37,7 @@ In this document, keypresses are expressed with styling like this: <kbd>a</kbd>.
 ### Example
 Consider the simple example of adding a wire in a schematic.
 
-To use an accelerator key, press <kbd>Shift</kbd>+<kbd>W</kbd> to invoke the "Add wire" command (note the cursor will change). Next, left click on the desired wire start location to begin drawing the wire.
+To use an accelerator key, press <kbd>Shift</kbd>+<kbd>w</kbd> to invoke the "Add wire" command (note the cursor will change). Next, left click on the desired wire start location to begin drawing the wire.
 
 With a hotkey, simply press <kbd>w</kbd> and the wire will immediately start from the current cursor location.
 
