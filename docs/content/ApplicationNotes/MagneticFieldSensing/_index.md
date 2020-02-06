@@ -11,7 +11,7 @@ If this looks overly mathematical, don’t worry, you can certainly skip the mat
 
 ### Basic E&M
 
-A current flowing in an infinite wire will generate a magnetic field that circles around  the wire (in a direction given by the right hand rule – align your thumb with the current, and your fingers point in the *B* field direction) whose strength drops off with \\(1/r\\):
+A current flowing in an infinite wire will generate a magnetic field that circles around  the wire (in a direction given by the right hand rule – align your thumb with the current, and your fingers point in the \\(B\\) field direction) whose strength drops off with \\(1/r\\):
 
 $$B=\frac{\mu_0 i}{2\pi r}$$
 
@@ -36,9 +36,7 @@ where \\(B\\) is the magnetic field, and \\(A\\) is the coil area. We assume tha
 Calculating the peak induced voltage for a {{< units 1 cm >}} diameter coil located {{< units 10 cm >}} from the wire, we get:
 
 $$ \begin{aligned} V &= -\frac{\partial}{\partial t} \left( \frac{\mu_0}{2\pi r} \cdot 0.1 \sin \omega t \right) \cdot A \\\ &= \omega \cdot \left( \frac{\mu_0}{2\pi r} \cdot 0.1 \cos \omega t \right) \cdot A \\\ V_\mathrm{peak} &= 2.52 \thinspace \mathrm{\mu V} \end{aligned} $$
-<!-- need to figure out upright mu here -->
-
-which is a miniscule value, and would not be able to see it on a typical oscilloscope with {{< units 5 mV >}} resolution. To increase your signal, you can connect several of these sensor loops in series. If you have \\(N\\) turns on your coil, you will get an induced voltage that is \\(N\\) times larger than the result for a single loop. With 1000 coils on the same sensor as above, you would see {{< units 2.52 mV >}}, which is something you can work with. This still needs amplification, but a relatively simple op-amp circuit will do.
+<!-- need to figure out upright mu here -->which is a miniscule value, and would not be able to see it on a typical oscilloscope with {{< units 5 mV >}} resolution. To increase your signal, you can connect several of these sensor loops in series. If you have \\(N\\) turns on your coil, you will get an induced voltage that is \\(N\\) times larger than the result for a single loop. With 1000 coils on the same sensor as above, you would see {{< units 2.52 mV >}}, which is something you can work with. This still needs amplification, but a relatively simple op-amp circuit will do.
 
 So at some fixed distance from the wire, there are two things you can do to increase your signal&mdash;increase coil area or number of turns:
 
@@ -54,7 +52,7 @@ where \\(A\\) is the coil area, \\(N\\) the number of turns, and \\(l\\) the len
 
 For a practical coil that may have a length similar in magnitude to the diameter, this is only an approximation good to within a factor of 2 or so. To increase the inductance, inductors are often wound around core materials. These cores effectively amplify the magnetic field (and therefore inductance), by anywhere from factors of 10s to 1000s. Iron is commonly used at low frequencies, and ferrite is used at higher frequencies.[^ferrite]
 
-[^ferrite]: Ferrite has much lower losses at high freq. since it is an electrical insulator and doesn’t let internal dissipative eddy currents flow as iron does.
+[^ferrite]: Ferrite has much lower losses at high freqencies since it is an electrical insulator and doesn’t let internal dissipative eddy currents flow as iron does.
 
 Also, real inductors always have some capacitance, resulting from the numerous turns of wire wound next to one another. There is always capacitance between two neighboring wires, increasing with decreasing separation.[^capacitance] This capacitance can easily be on the order of 10s to 100s of pF for a peanut-sized coil.
 

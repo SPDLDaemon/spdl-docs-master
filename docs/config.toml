@@ -2,6 +2,7 @@ baseURL = "http://spdldaemon.github.io/docs"
 languageCode = "en-us"
 title = "The SPDL Docs Repository"
 theme = "learn"
+GoogleAnalytics = "UA-71199601-2"
 
 # For search functionality
 [outputs]

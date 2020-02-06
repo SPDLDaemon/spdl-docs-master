@@ -1,0 +1,13 @@
+<!-- Partial intended to be overwritten to add custom headers, like CSS or any other info -->
+{{ $sass := resources.Get "bigfoot.scss" }}
+{{ $style := $sass | resources.ToCSS }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71199601-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-71199601-2');
+</script>

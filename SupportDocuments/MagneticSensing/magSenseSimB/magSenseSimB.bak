@@ -1,0 +1,104 @@
+EESchema Schematic File Version 4
+LIBS:magSenseSimB-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L pspice:0 #GND?
+U 1 1 5E2AA605
+P 6950 3500
+F 0 "#GND?" H 6950 3400 50  0001 C CNN
+F 1 "0" H 6950 3587 50  0000 C CNN
+F 2 "" H 6950 3500 50  0001 C CNN
+F 3 "" H 6950 3500 50  0001 C CNN
+	1    6950 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:VSOURCE SINE
+U 1 1 5E2AA72A
+P 7450 2500
+F 0 "SINE" V 6947 2500 50  0000 C CNN
+F 1 "5mV" V 7038 2500 50  0000 C CNN
+F 2 "" H 7450 2500 50  0001 C CNN
+F 3 "" H 7450 2500 50  0001 C CNN
+F 4 "V" H 7450 2500 50  0001 C CNN "Spice_Primitive"
+F 5 "dc 0 ac 2.5m sin(0 2.5m 20k)" H 7450 2500 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 7450 2500 50  0001 C CNN "Spice_Netlist_Enabled"
+	1    7450 2500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6950 2500 7150 2500
+$Comp
+L pspice:INDUCTOR L
+U 1 1 5E2AA933
+P 8250 2500
+F 0 "L" H 8250 2715 50  0000 C CNN
+F 1 "8.2mH" H 8250 2624 50  0000 C CNN
+F 2 "" H 8250 2500 50  0001 C CNN
+F 3 "" H 8250 2500 50  0001 C CNN
+	1    8250 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:C C
+U 1 1 5E2AABD4
+P 8250 2950
+F 0 "C" V 7935 2950 50  0000 C CNN
+F 1 "20pF" V 8026 2950 50  0000 C CNN
+F 2 "" H 8250 2950 50  0001 C CNN
+F 3 "" H 8250 2950 50  0001 C CNN
+	1    8250 2950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7750 2500 8000 2500
+Wire Wire Line
+	8500 2500 8700 2500
+$Comp
+L pspice:C C2
+U 1 1 5E2AADC2
+P 8250 3400
+F 0 "C2" V 8450 3400 50  0000 C CNN
+F 1 "7.66n" V 8026 3400 50  0000 C CNN
+F 2 "" H 8250 3400 50  0001 C CNN
+F 3 "" H 8250 3400 50  0001 C CNN
+	1    8250 3400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8500 3400 8700 3400
+Wire Wire Line
+	8700 3400 8700 2950
+Wire Wire Line
+	8500 2950 8700 2950
+Connection ~ 8700 2950
+Wire Wire Line
+	8700 2950 8700 2500
+Wire Wire Line
+	8000 2950 6950 2950
+Wire Wire Line
+	6950 2500 6950 2950
+Wire Wire Line
+	8000 3400 6950 3400
+Wire Wire Line
+	6950 3400 6950 2950
+Connection ~ 6950 2950
+Wire Wire Line
+	6950 3400 6950 3500
+Connection ~ 6950 3400
+Text Label 8700 2950 0    50   ~ 0
+A
+$EndSCHEMATC

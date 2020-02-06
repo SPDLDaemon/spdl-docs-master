@@ -183,3 +183,6 @@ kbd {
   font-style: inherit;
   white-space: nowrap;
 }
+
+/* Import settings for Bigfoot footnotes styling */
+@import "bigfoot.css";
