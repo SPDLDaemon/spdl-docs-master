@@ -1,0 +1,202 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L pspice:VSOURCE V
+U 1 1 5EAD14DB
+P 4700 3750
+F 0 "V" H 4928 3796 50  0000 L CNN
+F 1 "1 kHz" H 4928 3705 50  0000 L CNN
+F 2 "" H 4700 3750 50  0001 C CNN
+F 3 "~" H 4700 3750 50  0001 C CNN
+F 4 "V" H 4700 3750 50  0001 C CNN "Spice_Primitive"
+F 5 "pulse(0 1 25u 1u 1u 500u 1000u)" H 4700 3750 50  0001 C CNN "Spice_Model"
+F 6 "Y" H 4700 3750 50  0001 C CNN "Spice_Netlist_Enabled"
+	1    4700 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND?
+U 1 1 5EAD1D91
+P 4700 4200
+F 0 "#GND?" H 4700 4100 50  0001 C CNN
+F 1 "0" H 4700 4289 50  0001 C CNN
+F 2 "" H 4700 4200 50  0001 C CNN
+F 3 "~" H 4700 4200 50  0001 C CNN
+	1    4700 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:R R1
+U 1 1 5EAD2302
+P 5300 3450
+F 0 "R1" V 5095 3450 50  0000 C CNN
+F 1 "1k" V 5186 3450 50  0000 C CNN
+F 2 "" H 5300 3450 50  0001 C CNN
+F 3 "~" H 5300 3450 50  0001 C CNN
+	1    5300 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:CAP C1
+U 1 1 5EAD2EA9
+P 5550 3700
+F 0 "C1" H 5728 3746 50  0000 L CNN
+F 1 "100nF" H 5728 3655 50  0000 L CNN
+F 2 "" H 5550 3700 50  0001 C CNN
+F 3 "~" H 5550 3700 50  0001 C CNN
+	1    5550 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND?
+U 1 1 5EAD3664
+P 5550 4200
+F 0 "#GND?" H 5550 4100 50  0001 C CNN
+F 1 "0" H 5550 4289 50  0001 C CNN
+F 2 "" H 5550 4200 50  0001 C CNN
+F 3 "~" H 5550 4200 50  0001 C CNN
+	1    5550 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 4050 4700 4200
+Wire Wire Line
+	5550 3950 5550 4200
+Wire Wire Line
+	4700 3450 5050 3450
+Text Notes 8300 3800 1    50   ~ 0
+VOUT
+$Comp
+L pspice:R R2
+U 1 1 5EAD6173
+P 6000 3450
+F 0 "R2" V 5795 3450 50  0000 C CNN
+F 1 "1k" V 5886 3450 50  0000 C CNN
+F 2 "" H 6000 3450 50  0001 C CNN
+F 3 "~" H 6000 3450 50  0001 C CNN
+	1    6000 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:CAP C2
+U 1 1 5EAD6179
+P 6250 3700
+F 0 "C2" H 6428 3746 50  0000 L CNN
+F 1 "100nF" H 6428 3655 50  0000 L CNN
+F 2 "" H 6250 3700 50  0001 C CNN
+F 3 "~" H 6250 3700 50  0001 C CNN
+	1    6250 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND?
+U 1 1 5EAD617F
+P 6250 4200
+F 0 "#GND?" H 6250 4100 50  0001 C CNN
+F 1 "0" H 6250 4289 50  0001 C CNN
+F 2 "" H 6250 4200 50  0001 C CNN
+F 3 "~" H 6250 4200 50  0001 C CNN
+	1    6250 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 3950 6250 4200
+$Comp
+L pspice:R R3
+U 1 1 5EAD630E
+P 6700 3450
+F 0 "R3" V 6495 3450 50  0000 C CNN
+F 1 "1k" V 6586 3450 50  0000 C CNN
+F 2 "" H 6700 3450 50  0001 C CNN
+F 3 "~" H 6700 3450 50  0001 C CNN
+	1    6700 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:CAP C3
+U 1 1 5EAD6314
+P 6950 3700
+F 0 "C3" H 7128 3746 50  0000 L CNN
+F 1 "100nF" H 7128 3655 50  0000 L CNN
+F 2 "" H 6950 3700 50  0001 C CNN
+F 3 "~" H 6950 3700 50  0001 C CNN
+	1    6950 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND?
+U 1 1 5EAD631A
+P 6950 4200
+F 0 "#GND?" H 6950 4100 50  0001 C CNN
+F 1 "0" H 6950 4289 50  0001 C CNN
+F 2 "" H 6950 4200 50  0001 C CNN
+F 3 "~" H 6950 4200 50  0001 C CNN
+	1    6950 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 3950 6950 4200
+$Comp
+L pspice:R R4
+U 1 1 5EAD697A
+P 7400 3450
+F 0 "R4" V 7195 3450 50  0000 C CNN
+F 1 "1k" V 7286 3450 50  0000 C CNN
+F 2 "" H 7400 3450 50  0001 C CNN
+F 3 "~" H 7400 3450 50  0001 C CNN
+	1    7400 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:CAP C4
+U 1 1 5EAD6980
+P 7650 3700
+F 0 "C4" H 7828 3746 50  0000 L CNN
+F 1 "100nF" H 7828 3655 50  0000 L CNN
+F 2 "" H 7650 3700 50  0001 C CNN
+F 3 "~" H 7650 3700 50  0001 C CNN
+	1    7650 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:0 #GND?
+U 1 1 5EAD6986
+P 7650 4200
+F 0 "#GND?" H 7650 4100 50  0001 C CNN
+F 1 "0" H 7650 4289 50  0001 C CNN
+F 2 "" H 7650 4200 50  0001 C CNN
+F 3 "~" H 7650 4200 50  0001 C CNN
+	1    7650 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 3950 7650 4200
+Wire Wire Line
+	5750 3450 5550 3450
+Connection ~ 5550 3450
+Wire Wire Line
+	6450 3450 6250 3450
+Connection ~ 6250 3450
+Connection ~ 6950 3450
+Wire Wire Line
+	7650 3450 8150 3450
+Connection ~ 7650 3450
+Wire Wire Line
+	8150 3950 7650 3950
+Connection ~ 7650 3950
+Wire Wire Line
+	6950 3450 7150 3450
+$EndSCHEMATC

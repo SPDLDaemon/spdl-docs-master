@@ -2,6 +2,9 @@
 {{ $sass := resources.Get "bigfoot.scss" }}
 {{ $style := $sass | resources.ToCSS }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500|Oswald:500&display=swap" rel="stylesheet">
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71199601-2"></script>
 <script>

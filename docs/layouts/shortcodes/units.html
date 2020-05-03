@@ -1,15 +1,19 @@
-{{ if .Get 0}}
+{{- if .Get 0 -}}
   <i class="units" >
     {{- index .Params 0 -}}&thinsp;
 	{{- if strings.HasSuffix (.Get 1) "ohm" -}}
 	  {{- strings.TrimSuffix "ohm" (.Get 1) -}}&Omega;
 	{{- else if strings.HasSuffix (.Get 1) "percent" -}}
-	  {{- strings.TrimSuffix "percent" (.Get 1) -}}%
+		{{- strings.TrimSuffix "percent" (.Get 1) -}}%
+	{{- else if strings.HasSuffix (.Get 1) "volt" -}}
+	  {{- strings.TrimSuffix "volt" (.Get 1) -}}V
+	{{- else if strings.HasSuffix (.Get 1) "inch" -}}
+	  {{- strings.TrimSuffix "inch" (.Get 1) -}}in
 	{{- else -}}
-	  {{- .Get 1 }}
+	  {{- .Get 1 -}}
 	{{- end -}}
   </i>
-{{ else }}
+{{- else -}}
   <span class="shortcode-error">Shortcode usage: &lbrace;&lbrace;&lt; units 
   value unit &gt;&rbrace;&rbrace;</span>
-{{ end }}
+{{- end -}}

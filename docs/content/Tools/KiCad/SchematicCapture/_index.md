@@ -24,11 +24,11 @@ The keyboard shortcuts you'll be using most frequently for schematics are:
 
 ### Creating a Schematic
 
-1. Let’s begin by creating a schematic. Start the schematic editor Eeschema, ![Eeschema icon](eeschema.png?classes=inline). It is the first button from the left.
+1. Let’s begin by creating a schematic. Start the schematic editor Eeschema, ![Eeschema icon](eeschema.png?classes=icon). It is the first button from the left.
 
-1. Click on the 'Page Settings' icon ![Sheet settings icon](sheetset.png?classes=inline) on the top toolbar. Set the appropriate paper size ('A4', '8.5x11', etc.) and enter the Title as 'Tutorial'. You will see that more information can be entered here if necessary. Click OK. This information will populate the schematic sheet at the bottom right corner. Use the mouse wheel to zoom in. Save the whole schematic: **File{{< awesome fas fa-long-arrow-alt-right >}}Save**
+1. Click on the 'Page Settings' icon ![Sheet settings icon](sheetset.png?classes=icon) on the top toolbar. Set the appropriate paper size ('A4', '8.5x11', etc.) and enter the Title as 'Tutorial'. You will see that more information can be entered here if necessary. Click OK. This information will populate the schematic sheet at the bottom right corner. Use the mouse wheel to zoom in. Save the whole schematic: **File{{< awesome fas fa-long-arrow-alt-right >}}Save**
 
-1. We will now place our first component. Click on the 'Place symbol' icon ![add component icon](add_component.png?classes=inline) in the right toolbar. You may also press the 'Add Symbol' hotkey <kbd>a</kbd>.
+1. We will now place our first component. Click on the 'Place symbol' icon ![add component icon](add_component.png?classes=icon) in the right toolbar. You may also press the 'Add Symbol' hotkey <kbd>a</kbd>.
 
 1. Click on the middle of your schematic sheet. A *Choose Symbol* window will appear on the screen. Note that several thousand schematic symbols may be loaded, so make frequent use of search.  
 We’re going to place a resistor. Search / filter on the 'R' of Resistor. You may notice the 'Device' heading above the Resistor. This 'Device' heading is the name of the library where the component is located, which is quite a generic and useful library.
@@ -102,7 +102,7 @@ In general, it is recommended to use a grid of 50.0 mils for the schematic sheet
 
 ![Moved label](move_label.png)
 
-24. It is time to place the power and ground symbols. Click on the 'Place power port' button ![Add power icon](add_power.png?classes=inline) on the right toolbar. Alternatively, press <kbd>p</kbd>. In the component selection window, scroll down and select 'VCC' from the 'power' library. Click OK.
+24. It is time to place the power and ground symbols. Click on the 'Place power port' button ![Add power icon](add_power.png?classes=icon) on the right toolbar. Alternatively, press <kbd>p</kbd>. In the component selection window, scroll down and select 'VCC' from the 'power' library. Click OK.
 
 1. Click above the pin of the {{< units 1 kohm >}} resistor to place the VCC part. Click on the area above and to the left of the Teensy. In the 'Component Selection history' section select 'VCC' and place another to the left of the microcontroller. Repeat the add process again and place a VCC part above pin 1 of the connector. Move references and values out of the way if needed.
 
@@ -110,7 +110,7 @@ In general, it is recommended to use a grid of 50.0 mils for the schematic sheet
 
 ![Component layout image](layout_2.png)
 
-27. Next, we will wire all our components. Click on the 'Place wire' icon ![Place wire](add_line.png?classes=inline) on the right toolbar.
+27. Next, we will wire all our components. Click on the 'Place wire' icon ![Place wire](add_line.png?classes=icon) on the right toolbar.
 
 {{% notice note %}}
 Be careful not to pick 'Place bus', which appears directly beneath this button but has thicker lines and is blue. For more on how to use bus connections refer to the full [KiCad Documentation](https://docs.kicad-pcb.org/5.1.5/en/getting_started_in_kicad/getting_started_in_kicad.html#bus-connections-in-kicad).
@@ -128,7 +128,7 @@ If you want to reposition wired components, it is important to use <kbd>g</kbd> 
 
 ![Component layout with wires](layout_wired.png)
 
-30. We will now consider an alternative way of making a connection using labels. Pick a net labelling tool by clicking on the 'Place net label' icon ![Add net label icon](add_line_label.png?classes=inline) on the right toolbar. You can also use <kbd>l</kbd>.
+30. We will now consider an alternative way of making a connection using labels. Pick a net labelling tool by clicking on the 'Place net label' icon ![Add net label icon](add_line_label.png?classes=icon) on the right toolbar. You can also use <kbd>l</kbd>.
 
 1. Click the wire connected to the resistor which we connected to pin 6 of the microcontroller. Name this label 'INPUT'. The label is still an independent item which you can for example move, rotate and delete. The small anchor rectangle of the label must be exactly on a wire or a pin for the label to take effect.
 
@@ -142,9 +142,9 @@ If you want to reposition wired components, it is important to use <kbd>g</kbd> 
 
 ![Component layout with labels](layout_labeled.png)
 
-36. Sometimes it is good to write comments here and there. To add comments on the schematic use the 'Place text' icon ![place text icon](text.png?classes=inline) on the right toolbar.
+36. Sometimes it is good to write comments here and there. To add comments on the schematic use the 'Place text' icon ![place text icon](text.png?classes=icon) on the right toolbar.
 
-1. All components now need to have unique identifiers, so let's rename all of those components still named 'R?' or 'J?'. Identifier assignation can be done automatically by clicking on the 'Annotate schematic symbols' icon ~[annotate symbols icon](annotate.png?classes=inline) on the top toolbar.
+1. All components now need to have unique identifiers, so let's rename all of those components still named 'R?' or 'J?'. Identifier assignation can be done automatically by clicking on the 'Annotate schematic symbols' icon ~[annotate symbols icon](annotate.png?classes=icon) on the top toolbar.
 
 1. In the Annotate Schematic window, select 'Use the entire schematic' and click on the 'Annotate' button. Click 'Close'. Notice how all the '?' have been replaced with numbers. Each identifier is now unique. In our example, they have been named 'R1', 'R2', 'U1', 'D1' and 'J1'.
 
@@ -155,12 +155,12 @@ KiCad can also run an electrical rules check (ERC) to catch obvious mistakes; to
 
 1. First deal with unconnected wires. Any pin or wire that is not connected will generate a warning when checked by KiCad. To avoid these warnings you can either instruct the program that the unconnected wires are deliberate or manually flag each unconnected wire or pin as unconnected.
 
-1. Click on the 'Place no connection flag' icon ![no connection icon](noconn.png?classes=inline) on the right toolbar. Click on the unconnected pins. An X will appear to signify that the lack of a wire connection is intentional.
+1. Click on the 'Place no connection flag' icon ![no connection icon](noconn.png?classes=icon) on the right toolbar. Click on the unconnected pins. An X will appear to signify that the lack of a wire connection is intentional.
 
 1. It is now necessary to add a 'Power Flag' to indicate to KiCad that power comes in from somewhere. Press <kbd>a</kbd> and search for 'PWR_FLAG' which is in 'power' library. Place two of them. Connect them to a GND pin and to VCC as shown below.
 
 ![power flag connections](pwr_flag.png)
 
-4. We can now check our schematic for errors. Click on the 'Perform electrical rules check' icon ![electrical rules check icon](erc.png?classes=inline) on the top toolbar. Click on the 'Run' button. A report informing you of any errors or warnings such as disconnected wires is generated. You should have 0 Errors and 0 Warnings. In case of errors or warnings, a small green arrow will appear on the schematic in the position where the error or the warning is located. Check 'Create ERC file report' and press the 'Run' button again to receive more information about the errors.
+4. We can now check our schematic for errors. Click on the 'Perform electrical rules check' icon ![electrical rules check icon](erc.png?classes=icon) on the top toolbar. Click on the 'Run' button. A report informing you of any errors or warnings such as disconnected wires is generated. You should have 0 Errors and 0 Warnings. In case of errors or warnings, a small green arrow will appear on the schematic in the position where the error or the warning is located. Check 'Create ERC file report' and press the 'Run' button again to receive more information about the errors.
 
 

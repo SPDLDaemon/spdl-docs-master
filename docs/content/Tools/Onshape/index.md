@@ -17,7 +17,7 @@ First, [sign up for an educational account](https://www.onshape.com/edu) using y
 
 If you're used to Solidworks, Inventor, or some other CAD software, you can change Onshape's input preferences to match what you're used to. Once logged in, go to your [account preferences page](https://cad.onshape.com/user/settings), and under "View manipulation" choose the option for the software you're most familiar with.
 
-Onshape has an [Introduction to CAD](https://www.onshape.com/learn/learn-cad), [more in-depth courses](https://learn.onshape.com/) on CAD and data management, and further tutorials to help you get up to speed on using the software.
+Onshape has an [Introduction to CAD](https://www.onshape.com/learn/learn-cad) as well as [more in-depth courses](https://learn.onshape.com/) on CAD and data management to help you get up to speed on using the software.
 
 If you're going to be making a lot of laser-cut parts, you'll want to add the set of custom features I wrote to help do that:
 
@@ -33,7 +33,7 @@ If you're going to be making a lot of laser-cut parts, you'll want to add the se
 [Auto Layout](https://cad.onshape.com/documents/576e01dbe4b0cc2e7f46a55d/w/b7cb6876d1121a6c249f59c7/e/b72c231628b5affea0873222)
 : Automatically lays out parts for cutting using a rectangular bin-packing algorithm.
 
-To add these features to your toolbar, open an Onshape document, and click the "+" icon at the right end of your toolbar. In the "Search documents or paste URL" field, paste each of the above URLs, and add the features to the toolbar. 
+To add these features to your toolbar, open an Onshape document, and click the ![Add custom feature icon](addCustomFeature.png?classes=icon) icon at the right end of your toolbar. In the "Search documents or paste URL" field, paste each of the above URLs, and add the features to the toolbar. 
 
 Each of the links above also points to a PDF containing documentation for each feature.
 
@@ -45,10 +45,12 @@ Unless you're very interested in writing your own custom code, don't "Make a cop
 As an example, we'll go through the process of getting the basic shape of my ME218 project, [Big Game Hunting](https://biggamehunting218.weebly.com/mechanical.html), drawn up in Onshape and then exported to cut on a laser.
 
 ### CAD the Base Geometry
-We'll start by creating the solid model of the parts we want, before setting up to cur them on a laser.
+We'll start by creating the solid model of the parts we want, before setting up to cut them on a laser.
 
 #### So What is a Part Studio Anyway?
-If you totally skipped all the tutorials above (be honest, you did, didn't you?), here's the quick summary of what a "Part Studio" is.
+If you totally skipped all the tutorials above[^skip], here's the quick summary of what a "Part Studio" is.
+
+[^skip]: Be honest, you did, didn't you?
 
 Where most CAD programs have a single part being modeled in a single file, and use assemblies for the physical interfacing of parts and motion studies, this often means that multiple parts that are inherently related in geometry must be modeled separately, or with in-context assembly features, which can reduce robustness of the modeling.
 
@@ -56,52 +58,89 @@ Onshape uses Part Studios to model parts. Each Part Studio can (and often does) 
 
 Different groups of parts which do not need to be modeled together can be split into different part studios to speed up regeneration time, and then the subassemblies can be test-fit in an Assembly.
 
-#### Variables
-Especially when modeling geometry that has specified dimensions, like the board thicknesses for your laser cut parts, it is extremely helpful to first define variables that you can then reference later throughout the design. If you then need to go through and change dimensions because your board is 6mm instead of 1/4", this will make that fix much much easier for you later.
+For more complicated geometries, it is also possible to model parts in-context with reference to a particular state of an Assembly. Typically, this will be when a part's geometry depends on the motion of the assembly.  For parts without complex constraints, try to keep your modeling in Part Studios.
 
-The Variable is on the toolbar as "(x)".
-Define one constant for thick plates (e.g. 1/4"), and one for thin plates (e.g. 1/8").
-This should look something like this.
+#### Variables
+Especially when modeling geometry that has specified dimensions, like the board thicknesses for your laser cut parts, it is extremely helpful to first define variables that you can then reference later throughout the design. If you then need to go through and change dimensions because your board is {{< units 6 mm >}} instead of {{< units 0.25 in >}}, this will make that fix much much easier for you later.
+
+The feature for defining variables is on the toolbar as ![Variable icon](variable.png?classes=icon).
+
+{{% notice tip %}}
+If you're ever lost as to where a feature is located, pressing <kbd>Alt</kbd>+<kbd>c</kbd> will open a search dialog.  The feature location will also be highlighted on the toolbar.
+{{% /notice %}}
+
+Define one constant for thick plates (e.g. {{< units 6 mm >}}), and one for thin plates (e.g. {{< units 3 mm >}}).
+This should look something like this:
+
+![Variable definition dialog](variableDefinition.png)
 
 #### Sketch and Extrude The Base
-Click "Sketch" and start a sketch on the top plane. Alternatively, Shift-s is the shortcut for starting a sketch.
-Drag a center-point rectangle (Shortcut: r) from the origin.
-Dimension it to 18x18".
-The result should look something like this.
-Accept the sketch, and then click "Extrude" (Shortcut: Shift-e).
-For "faces and sketch regions, simply choose the sketch itself from the feature tree.
-For the depth, type in "#plate_thick" to reference the variable you created earlier.
+Click ![Sketch icon](sketchIcon.png?classes=icon) and start a sketch on the top plane. Alternatively, <kbd>Shift</kbd>+<kbd>s</kbd> is the shortcut for starting a sketch.
+Drag a center-point rectangle (Shortcut: <kbd>r</kbd>) from the origin.
+Dimension it (Shortcut: <kbd>d</kbd>) to 18 by 18 inches, and accept the sketch.
+
+{{% gfycat joyousblackandwhiteindianskimmer 61.36 %}}
+
+We'll now turn the sketch into solid geometry.
+Click "Extrude" (Shortcut: <kbd>Shift</kbd>+<kbd>e</kbd>).
+For "faces and sketch regions", simply choose the sketch itself from the feature tree.
+For the depth, type in "#duron_thick" to reference the variable you created earlier.
+
+{{% gfycat fondangelicamericanwirehair 61.36 %}}
 
 #### Sketch the Sides
 Start a sketch on the right face of the base you just extruded, and sketch and dimension the outline of the box.
 Extrude, again selecting the sketch itself as the object. Make sure that the extrusion mode is set to "new" to create a new part, and not "add," which would merge the new extrusion with the base.
-You should now have two parts that look like this.
-Choose "mirror" from the toolbar, and mirror the side plate across the right face, again using the "new" option rather than "add."
+You should now have two parts that look like this:
+
+Choose the mirror feature ![Mirror icon](mirrorIcon.png?classes=icon) from the toolbar, and mirror the side plate across the right plane, again using the "new" option rather than "add."
+
+{{% gfycat agonizinginferiorghostshrimp 61.36 %}}
+
+{{% notice note %}}
+Generally, you want to avoid mirroring identical parts, instead modeling them once and then making copies in the assembly.  In this particular case, mirroring in the part studio helps with the laser-cutting workflow.  On an actual project your left and right sides will also likely be different.
+{{% /notice %}}
 
 #### Sketch and Extrude The Cross Members
 You can extrude multiple disjoint regions as part of a single sketch, and they'll all become parts. So for the cross members, we can do everything as a single sketch to define geometry, and then extrude regions from the same sketch in multiple operations.
 
 Make a new sketch on the outside face of one of the side plates.
-Sketch the vertical and horizontal components using corner rectangles (Shortcut: r).
+Sketch the vertical and horizontal components using corner rectangles (Shortcut: <kbd>r</kbd>).
 For the two pieces along the angled line, sketch a couple of corner rectangles, and select the bottom horizontal line. This should highlight the constraints for that line. Delete the horizontal constraint, and then add a concident constraint between the top line and the edge of the plate.
-Add equality constraints to the thickness dimensions of all the rectangles, and then dimension one to be #plate_thick.
-You should have a sketch that looks like this.
-Extrude non-intersecting plates across the volume, using the "terminate at face" option to go to the outside face of the other side plate. I did the front, back, top spar, and one of the middle spars in one extrude, and the remaining parts in another to end up with this. You'll have to un-hide the sketch after the first extrude to be able to select different regions from it the second time.
+
+Add equality constraints to the thickness dimensions of all the rectangles, and then dimension one to be #duron_thick.
+
+Extrude non-intersecting plates across the volume, using the "terminate at face" option to go to the outside face of the other side plate. I did the front, back, top spar, and one of the middle spars in one extrude, and the remaining parts in another operation. You'll have to un-hide the sketch after the first extrude to be able to select different regions from it the second time.
+
+{{< figure src="sideComposite.png" alt="Sketch and extrude cross members" caption="Creating the cross members.  Sketch includes all geometry extruded along the right plane. All parts are extruded as two non-overlapping sets.">}}
 
 #### Sketch and Extrude Facing Plates
-These plates will end up covering the insides of the box. For each, sketch and extrude a plate of thickness #plate_thin.
-Your box should now look something like this.
+These plates will end up covering the insides of the box. For each, sketch and extrude a plate of thickness #duron_thin.
+Your box should now look something like this:
+
+![With facing plates](facing.png)
 
 ### Assemble and Create Connections
-In this particular case, you could make all mirror copies of parts in the part studio.
-Particularly if you know that the left and right sides will be different, for instance.
-However, we're going to proceed as though the sides will be identical geometry just to demonstrate the principle.
-
 
 #### Assemble the Parts
+In this particular case, we made all mirror copies of parts in the part studio.
+However, for the sake of going through the process, we'll pull the parts into an assembly.
+
+Create a new assembly, and then click ![Insert icon](insertIcon.png?classes=icon), then simply select the entire part studio.
+Click accept without clicking in the viewport to insert at the origin.
+Right-click the base part and click "fix"&mdash;this constrains all degrees of freedom for that part.
+You can now click ![group icon](groupIcon.png?classes=icon) and select all parts to create a group constraint, which fixes all degrees of freedom between parts in the group.
+
+If the sides were identical geometry, here's where you'd make multiple copies of them in the assembly.
 
 #### Create an In-Context Part Studio
 This in-context part studio will allow us to make joints on the assembled components, as well as be the starting point for laying them out to cut.
+From the assembly, click ![in context icon](inContextIcon.png?classes=icon) to create a part studio from the assembly.
+Once in the new part studio, create a Transform feature, and copy in place all of the components from the assembly context.
+You can now hide the assembly context view and work with the local copies to add joints without affecting the parts in the assembly.
+
+This link can be updated, but does not do so automatically. 
+Updating the context can be done from the context menu at the top of the part studio feature tree.
 
 #### Add T-Slot Connections for the Facing Plates
 We want the facing plates to be removable so you can get at the insides. One way to do this, though by no means the only, is to use bolted edge connections through the facing plates into the edge plates.
@@ -111,18 +150,18 @@ Repeat for all four edges.
 
 #### Laser Joint
 Select the Laser Joint feature from your custom feature toolbar.
-Select Automatic mode, then drag-select all of the non-facing parts. Enable adaptive pin sizing, and set the limits appropriately. I've found that for most work in ME218/Lab, the other options aren't necessary, but play around with them to get a feel for it. Leave Allowance disabled here to get a nice fit for your parts.
+Select Automatic mode, then drag-select all of the non-facing parts. Enable adaptive pin sizing, and set the limits appropriately. I've found that for most work in ME218, the other options aren't necessary, but play around with them to get a feel for it. Leave Allowance disabled here to get a nice fit for your parts.
 
 #### Kerf Compensation
 The lasers on campus cut along the centerline. To get nominal-size parts, we'll offset the geometry a little so that everything lines up.
 
-Add a Kerf Compensation feature, select the "By Thickness" mode, and enter one of the plate thicknesses you input earlier. I find that for 1/4"/6mm materials, using a kerf of 0.01" and an allowance of 0.001" works well; keep the same allowance and assume a 0.008" kerf for 1/8"/3mm parts. To be extra precise, cut a test square in your material on your laser and measure the kerf.
+Add a Kerf Compensation feature, select the "By Thickness" mode, and enter one of the plate thicknesses you input earlier. I find that for {{< units 0.25 inch >}}/{{< units 6 mm >}} materials, using a kerf of {{< units 0.01 in >}} and an allowance of {{< units 0.001 in >}} works well; keep the same allowance and assume a {{< units 0.008 in >}} kerf for {{< units 0.125 inch >}}/{{< units 3 mm >}} parts. To be extra precise, cut a test square in your material on your laser and measure the kerf.
 
 
-### Nest the Partss for Cutting
-You now have an assembly with all joints computed, and you need to get them to a laser.  Our first approach will be the autolayout feature
+### Nest the Parts for Cutting
+You now have an assembly with all joints computed, and you need to get them to a laser.  Our first approach will be the Auto Layout feature
 
-#### Autolayout
+#### Auto Layout
 
 
 

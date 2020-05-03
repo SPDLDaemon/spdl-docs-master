@@ -36,7 +36,8 @@ where \\(B\\) is the magnetic field, and \\(A\\) is the coil area. We assume tha
 Calculating the peak induced voltage for a {{< units 1 cm >}} diameter coil located {{< units 10 cm >}} from the wire, we get:
 
 $$ \begin{aligned} V &= -\frac{\partial}{\partial t} \left( \frac{\mu_0}{2\pi r} \cdot 0.1 \sin \omega t \right) \cdot A \\\ &= \omega \cdot \left( \frac{\mu_0}{2\pi r} \cdot 0.1 \cos \omega t \right) \cdot A \\\ V_\mathrm{peak} &= 2.52 \thinspace \mathrm{\mu V} \end{aligned} $$
-<!-- need to figure out upright mu here -->which is a miniscule value, and would not be able to see it on a typical oscilloscope with {{< units 5 mV >}} resolution. To increase your signal, you can connect several of these sensor loops in series. If you have \\(N\\) turns on your coil, you will get an induced voltage that is \\(N\\) times larger than the result for a single loop. With 1000 coils on the same sensor as above, you would see {{< units 2.52 mV >}}, which is something you can work with. This still needs amplification, but a relatively simple op-amp circuit will do.
+<!-- need to figure out upright mu here -->
+which is a miniscule value, and would not be able to see it on a typical oscilloscope with {{< units 5 mV >}} resolution. To increase your signal, you can connect several of these sensor loops in series. If you have \\(N\\) turns on your coil, you will get an induced voltage that is \\(N\\) times larger than the result for a single loop. With 1000 coils on the same sensor as above, you would see {{< units 2.52 mV >}}, which is something you can work with. This still needs amplification, but a relatively simple op-amp circuit will do.
 
 So at some fixed distance from the wire, there are two things you can do to increase your signal&mdash;increase coil area or number of turns:
 
