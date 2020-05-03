@@ -8,9 +8,9 @@ katex = true
 
 Normally, audio signal processing is done on a dedicated digital signals programming (DSP) chip&mdash;there's a reason that a multiply and accumulate (MAC) instruction is the first one added, since there's a lot of that to go around when processing a more complicated tone of any sort.
 We'll start by looking at what it takes to simply generate and receive clean audio tones when using the PIC, and discuss some more involved signal processing that can improve robustness and enable multiple tone detection at the cost of significant processing time[^picisslow].
-The rest of this document assumes a PIC16F15356, although deifferences on different processors will be called out where relevant.
+The rest of this document assumes a PIC16F15356, although differences on different processors will be called out where relevant.
 
-[^picisslow]: At least, on a PIC that doesn't have a hardware multiply, is 8-bits, and running on only a {{< units 32 mHz >}} clock.
+[^picisslow]: At least, on a PIC that doesn't have a hardware multiply, is 8-bits, and running on only a {{< units 32 MHz >}} clock.
 
 ### Analog Modulation
 
@@ -29,11 +29,11 @@ Where \\(A\\) is the amplitude, \\(\omega\\) the frequency[^radians], and \\(\ph
 **Amplitude** is the most natural modulation; for example, we can encode a `1` as a loud tone, and a `0` as a soft tone.
 However, this method is not very robust to variations in the communication channel: how do you tell if the transmitting device is just farther from the microphone today, or transmitting all zeros on purpose? Is that just someone clapping in the background, or a set of ones?
 
-What if we encode the data as variations rather than abolute levels?
+What if we encode the data as variations rather than absolute levels?
 This will work&mdash;this is how AM radio works&mdash;but the data rate is much lower than the carrier wave frequency.
 
 **Frequency** is probably the next most natural modulation; by choosing different frequencies, we can communicate different information[^python].
-Frequency relies on time implicitly, and since time isn't affected by a nonideal transmission channel, this method is more robust than the amplitude modulation above[^doppler].
+Frequency relies on time implicitly, and since time isn't affected by a non-ideal transmission channel, this method is more robust than the amplitude modulation above[^doppler].
 This type of modulation is known as _frequency shift keying_ (FSK).
 Typically, one frequency will be defined as the "mark" frequency, and will encode a `1`.
 Another frequency will be defined as the "space" frequency, encoding `0`.
@@ -105,6 +105,24 @@ For the specific hardware we're using, the resulting low peak-peak amplitude is 
 Generation of constant-amplitude sine waves can be achieved by using the digital-to-analog converter (DAC) peripheral on the 16F15356.
 The DAC has 5-bit resolution, and outputs a constand analog voltage.
 By using a lookup table and changing the DAC output at periodic intervals, a sine wave can be approximated.
+
+{{% notice note %}}
+Why do we want to use a loookup table and not just compute the value on the fly?  It all comes down to processing time.
+
+While a purpose-built chip intended for DSP might have the appropriate hardware instructions and clock speed to actually compute a sine function in real time, doing so would require a lot of floating-point math.
+Even on chips with floating-point implemented in hardware, this will be much slower than using integer math everywhere.
+On a processor like the PIC16F15356, with no hardware multiply, 8-bit word size, and a relatively low clock, doing even integer multiplication and division can be too much computation to fit into a high-rate interrupt.
+
+Using a lookup table means that we can do all of the math ahead of time.
+Usually, this means when we're writing our code, doing the computations on a proper computer and inserting a const array in the program.
+Sometimes, this can mean computing the lookup table in code, but doing it slowly outside an interrupt while there are no time-critical functions running&mdash;if the lookup table depends on measurements made while your code is running, for example.
+
+A lookup table doesn't necessarily have to be a direct representation of a waveform either.
+If you needed to actually compute sines on a microcontroller, you'd typically include a lookup table `sineTable` such that `sineTable[d]` held the value of \\(\sin \frac{d}{2\pi}\\), for example.
+{{% /notice %}}
+
+
+
 The DAC output has a high source impedance, and so it should be unity buffered; as the output is a stepped sine wave, it must also be filtered to remove harmonics.
 However, here a single RC filter stage suffices to smooth the waveform sufficently.
 
@@ -128,6 +146,11 @@ static char index = 0;
 ```
 Note that we stop at the point just before completing the cycle; when we step through this table, the next point will be index 0, ensuring a smooth repeat of the waveform.
 
+{{% notice note %}}
+I'm using floats here to match the waveform exactly; remember that rule 1 of embedded microcontrollers is "Only use integer math, and preferably only add."
+You'll want to match the output values to whatever your hardware expects.
+{{% /notice %}}
+
 Our generation code, called at regular intervals, might look something like
 ```C
 output = table[index];
@@ -136,7 +159,8 @@ index = (index + 1) % 14;
 so that the index steps through each element in turn.
 
 {{% notice tip %}}
-Arbitrary modulus operations (e.g. `++i % c` where c is not a power of `2`) are expensive on a low-power microcontroller. Depending on the intelligence of the compiler, even where `c` is a power of 2, using the modulo operator `%` may result in an expensive computation.
+Arbitrary modulus operations (e.g. `++i % c` where c is not a power of `2`) are expensive on a low-power microcontroller. 
+Depending on the intelligence of the compiler, even where `c` is a power of 2, using the modulo operator `%` may result in an expensive computation.
 
 Either use tables of length \\(2^n\\) and use a mask to perform the modulo (e.g. `++i &= 0x03` to count modulo `4`), or if a table of a specific length is required, check explicitly for the index reaching the table end and reassign the index: `if ( ++i >= len) i = 0;`
 {{% /notice %}}
@@ -173,6 +197,26 @@ Note that the delta at a given index corresponds to how long the value at that s
 
 Both approaches allow for relatively easy modification of the output frequency when generating a single tone, by dynamically adjusting the delay between successive output values.
 Using a fixed time delta simplifies this on a low-power microcontroller, as the delay scaling only needs to be calculated once per output frequency, and not once per sample.
+
+**Practical Considerations:**
+
+There's a few things to note here on how to actually implement a lookup table method like this.
+The first is that looking at the example tones above, they're square, blocky, and not very similar to the underlying sine wave; here it's intentional for ullustrative purposes, but that's not what you want if you're trying to generate an actual sine-like output.
+
+Using the fixed-value variable-time approach will scale to be as good as your DAC resolution allows, and you'll only have to worry about running updates too quickly.
+Using a fixed-time update is more flexible in terms of tuning, where the natural way to improve signal quality is to increase the update rate.
+
+What's the upper bound on how fast we can go?
+One constraint comes from the hardware: each DAC will have some nominal settling time, and attempting to update faster than that rate may cause a reduction in performance.
+Another constraint comes from processing: even though simply copying a table value to an output takes little time, if you do it too often you'll be spending all your time in the interrupt and none of it running any of your actual code.
+Any time you're setting up a control or signal processing interrupt like this, make sure you time it to see what fraction of CPU time it's consuming.
+
+What's the lower bound on how fast we want to go?
+This one is less of a bound an more a guideline.
+You want to make sure you're running your output loop fast enough that the resulting wave looks like you want it to.
+A rough rule of thumb here is to choose an update rate at least 10 times faster than the highest frequency you want to use, as long as that's feasible with respect to your upper bound.
+
+Another note: depending on your particular microcontroller, if you have multiple lookup tables, it can be significantly faster to define each table as a 1-D array, rather than combining them as a single 2-D array&mdash;array lookups using a variable as the index can be slow.
 
 #### Multiple Tones
 
@@ -274,7 +318,8 @@ While for some applications it may make sense to compute the constants at runtim
 For most microcontrollers, we won't necessarily have access to a hardware floating-point multiply, and so we'll also want to refactor everything to use integer math.
 
 {{% notice info %}}
-**Fixed-point** math is one way of dealing with decimal values while not incurring the expense of floating-point operations.  Even where floating-point hardware exists, integer math is likely to be faster.
+**Fixed-point** math is one way of dealing with small values while not incurring the expense of floating-point operations.  
+Even where floating-point hardware exists, integer math is likely to be faster, at the cost of some precision.
 
 A fixed-point representation of a number simply adds a virtual decimal point at a specific location in the number; for familiarity, let's look at some examples in base 10.
 
@@ -282,6 +327,8 @@ Let's say I want to multiply 3.4 and 1.7.  The result (with an explicit decimal 
 
 We can do the same thing in binary, treating a fixed number of bits \\(b\\) as the post-decimal-point bits, corresponding to values of 1/2, 1/4, 1/8, etc.  The scale factor would then be \\(S=2^b\\).
 Again, every multiplication will need to be scaled down by \\(S\\) to keep the numbers scaled correctly.
+For two numbers \\(a\\) and \\(b\\), each with a scaling of \\(S=2^b\\), we have that the product \\(p = ab/S\\).
+In code, this looks like `p = (a * b) >> b`.
 {{% /notice %}}
 
 Let's define a scaling factor of the form \\(S=2^b\\) where \\(b\\) is an integer.

@@ -16,7 +16,7 @@
    id="svg8"
    sodipodi:docname="discretization.svg"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   inkscape:export-filename="H:\git\spdl-docs-master\SupportDocuments\AudioModem\digitalFilter\discD.png"
+   inkscape:export-filename="H:\git\spdl-docs-master\SupportDocuments\AudioModem\digitalFilter\discF.png"
    inkscape:export-xdpi="149.92125"
    inkscape:export-ydpi="149.92125">
   <defs
@@ -204,10 +204,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="274.35438"
-     inkscape:cy="212.24346"
+     inkscape:cx="307.25698"
+     inkscape:cy="213.45834"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer9"
+     inkscape:current-layer="layer10"
      showgrid="false"
      inkscape:window-width="3440"
      inkscape:window-height="1387"
@@ -846,7 +846,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Y discretization"
-     style="display:inline"
+     style="display:none"
      transform="translate(-47.270791,-73.036503)">
     <g
        transform="matrix(0.26458333,0,0,0.26458333,36.663691,66.245531)"
@@ -943,7 +943,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Wave"
-     style="display:none"
+     style="display:inline"
      transform="translate(-47.270791,-73.036503)">
     <g
        transform="matrix(0.26458333,0,0,0.26458333,36.663691,66.245531)"
@@ -959,7 +959,7 @@
      inkscape:groupmode="layer"
      id="layer8"
      inkscape:label="value sample"
-     style="display:inline">
+     style="display:none">
     <g
        style="display:inline;opacity:1"
        id="g9152"
@@ -1135,7 +1135,7 @@
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="deltas"
-     style="display:inline">
+     style="display:none">
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 13.323661,36.469092 V 51.493644"
@@ -1152,7 +1152,7 @@
        inkscape:connector-curvature="0"
        id="path9239"
        d="M 8.9574062,49.770578 H 12.937961"
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker9249);marker-end:url(#marker9277)" />
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker9249);marker-end:url(#marker9277)" />
     <text
        id="text9245"
        y="53.86668"
@@ -1167,7 +1167,7 @@
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan9437">0</tspan></tspan></text>
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker9851);marker-end:url(#marker9891)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker9851);marker-end:url(#marker9891)"
        d="m 13.801666,49.770578 h 3.980555"
        id="path9847"
        inkscape:connector-curvature="0" />
@@ -1194,7 +1194,7 @@
        inkscape:connector-curvature="0"
        id="path10293"
        d="m 18.767354,49.770578 h 4.940412"
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker10303);marker-end:url(#marker10355)" />
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker10303);marker-end:url(#marker10355)" />
     <text
        id="text10299"
        y="53.86668"
@@ -1206,7 +1206,7 @@
          x="19.399023"
          y="53.86668"
          style="font-size:4.23333311px">δ<tspan
-   style="font-size:65%;baseline-shift:sub"
+   style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan11047">2</tspan></tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -1215,7 +1215,7 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker11082);marker-end:url(#marker11146)"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker11082);marker-end:url(#marker11146)"
        d="m 24.843288,49.770578 h 11.92359"
        id="path11072"
        inkscape:connector-curvature="0" />
@@ -1560,5 +1560,22 @@
        id="path8376"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccccccccccccccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer10"
+     inkscape:label="discretized_value">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 8.7074829,46.787151 H 13.28452 l 0,-10.306596 4.974776,0 V 26.147295 H 24.20194 V 15.79684 H 37.447318 V 5.5027207 h 13.11273 V 15.79684 h 5.964588 v 10.350455 h 4.963312 v 10.33326 h 4.579604 v 10.306596"
+       id="path12249"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccccccc" />
+    <path
+       sodipodi:nodetypes="ccccccccccccccccc"
+       inkscape:connector-curvature="0"
+       id="path12251"
+       d="m 66.067552,46.787151 h 4.577037 v 10.306596 h 4.974776 v 10.33326 h 5.942644 v 10.350455 h 13.245378 v 10.29412 h 13.112723 v -10.29412 h 5.96459 V 67.427007 h 4.96331 v -10.33326 h 4.57961 V 46.787151"
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>
