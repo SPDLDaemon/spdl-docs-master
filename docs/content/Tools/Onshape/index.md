@@ -4,6 +4,7 @@ date: 2020-01-10T12:45:58-08:00
 weight: 5
 draft: true
 ---
+<!-- spellcheck: off -->
 
 ## Why Onshape?
 [Onshape](https://www.onshape.com/) is a full-cloud parametric CAD system that runs in your browser. This means that your document is stored in the cloud, and if you're working on a group project, everyone edits a single copy of the document, real-time. No more sending one person off to do all the CAD or dealing with whether "Version 1 Final Actual Final" or "Final Version 1" is the more recent copy.
@@ -106,7 +107,7 @@ You can extrude multiple disjoint regions as part of a single sketch, and they'l
 
 Make a new sketch on the outside face of one of the side plates.
 Sketch the vertical and horizontal components using corner rectangles (Shortcut: <kbd>r</kbd>).
-For the two pieces along the angled line, sketch a couple of corner rectangles, and select the bottom horizontal line. This should highlight the constraints for that line. Delete the horizontal constraint, and then add a concident constraint between the top line and the edge of the plate.
+For the two pieces along the angled line, sketch a couple of corner rectangles, and select the bottom horizontal line. This should highlight the constraints for that line. Delete the horizontal constraint, and then add a coincident constraint between the top line and the edge of the plate.
 
 Add equality constraints to the thickness dimensions of all the rectangles, and then dimension one to be #duron_thick.
 

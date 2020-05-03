@@ -4,6 +4,7 @@ date: 2020-01-10T20:59:29-08:00
 weight: 3
 draft: false
 ---
+<!-- spellcheck: off -->
 
 KiCad is pretty powerful, and as with many open-source software, can sometimes have a steep learning curve.
 For the purposes of use in lab, the rest of this tutorial will focus on things you might use reasonably often.

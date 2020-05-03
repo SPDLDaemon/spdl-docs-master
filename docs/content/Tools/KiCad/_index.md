@@ -4,7 +4,7 @@ date: 2020-01-09T22:02:37-08:00
 weight: 10
 draft: false
 ---
-
+<!-- spellcheck: off -->
 
 KiCad[^1] is an open-source software tool for the creation of electronic schematic diagrams and PCB artwork. 
 Although essentially treated as one program, KiCad is really more of a tight grouping of the following stand-alone software tools:
@@ -33,7 +33,7 @@ This tutorial is written using KiCad 5.0.0 on Windows 10.  While significant cha
 
 KiCad does not present any board-size limitation and it can easily handle up to 32 copper layers, up to 14 technical layers and up to 4 auxiliary layers. KiCad can create all the files necessary for building printed boards, Gerber files for photo-plotters, drilling files, component location files and a lot more. KiCad also incorporates ngspice, an open-source circuit simulator. 
 
-Being open source (GPL licensed), KiCad represents the ideal tool for projects oriented towards the creation of electronic hardware with an open-source flavour.
+Being open source (GPL licensed), KiCad represents the ideal tool for projects oriented towards the creation of electronic hardware with an open-source flavor.
 
 On the Internet, the homepage of KiCad is: http://www.kicad-pcb.org/
 
@@ -87,7 +87,7 @@ Alternatively, you can download and install a pre-compiled version of KiCad, or 
 
 
 ## KiCad Workflow
-Despite its similarities with other PCB design software, KiCad is characterised by a unique workflow in which schematic components and footprints are separate. Only after creating a schematic are footprints assigned to the components.
+Despite its similarities with other PCB design software, KiCad is characterized by a unique workflow in which schematic components and footprints are separate. Only after creating a schematic are footprints assigned to the components.
 
 ### Overview
 The KiCad workflow is comprised of two main tasks: drawing the schematic and laying out the board. Both a schematic component library and a PCB footprint library are necessary for these two tasks. KiCad includes many components and footprints, and also has the tools to create new ones.

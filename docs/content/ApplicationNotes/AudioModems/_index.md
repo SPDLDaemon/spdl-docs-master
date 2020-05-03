@@ -5,6 +5,7 @@ weight = 10
 toc = true
 katex = true
 +++
+<!-- spellcheck: off -->
 
 Normally, audio signal processing is done on a dedicated digital signals programming (DSP) chip&mdash;there's a reason that a multiply and accumulate (MAC) instruction is the first one added, since there's a lot of that to go around when processing a more complicated tone of any sort.
 We'll start by looking at what it takes to simply generate and receive clean audio tones when using the PIC, and discuss some more involved signal processing that can improve robustness and enable multiple tone detection at the cost of significant processing time[^picisslow].
@@ -70,7 +71,7 @@ We'll start with the transmission side of the communication channel: how do we g
 Let's start with the simpler case: Let's say we want to generate tones of only one frequency at a time, alternating between two or more tones to convey information.
 
 The easiest way to generate a frequency on a PIC is to use the CCP peripheral, set it up to control an output pin, and generate a square wave.  
-A square wave isn't very nice as an audio source though&mdash;a square wave contains all the harmonics of the frequency of the signal you're generating, and so if any of the components you're using to transduce the voltage signal to or from actual audio have any resonances, they'll almost certaily be excited.
+A square wave isn't very nice as an audio source though&mdash;a square wave contains all the harmonics of the frequency of the signal you're generating, and so if any of the components you're using to transduce the voltage signal to or from actual audio have any resonances, they'll almost certainly be excited.
 
 The obvious solution is to filter it.
 Let's generate a {{< units 1 kHz >}} square wave between {{< units "0" volt >}} and {{< units 1 volt >}}, and add an RC filter with a corner at {{< units 1.6 kHz >}}:
@@ -103,18 +104,18 @@ For the specific hardware we're using, the resulting low peak-peak amplitude is 
 [^frequencies]: If we assume an ideal filter such that all frequencies below the filter bandwidth \\(f_\mathrm{BW}\\) are passed with unity gain, and all frequencies above are perfectly blocked, the range of usable frequencies is \\(\frac{1}{3}f_\mathrm{BW} < f < f_\mathrm{BW}\\). Since the filter rolloff is not ideal, the available frequency range will be smaller; if roughly equal amplitude is required, it will be smaller still.
 
 Generation of constant-amplitude sine waves can be achieved by using the digital-to-analog converter (DAC) peripheral on the 16F15356.
-The DAC has 5-bit resolution, and outputs a constand analog voltage.
+The DAC has 5-bit resolution, and outputs a constant analog voltage.
 By using a lookup table and changing the DAC output at periodic intervals, a sine wave can be approximated.
 
 {{% notice note %}}
-Why do we want to use a loookup table and not just compute the value on the fly?  It all comes down to processing time.
+Why do we want to use a lookup table and not just compute the value on the fly?  It all comes down to processing time.
 
 While a purpose-built chip intended for DSP might have the appropriate hardware instructions and clock speed to actually compute a sine function in real time, doing so would require a lot of floating-point math.
 Even on chips with floating-point implemented in hardware, this will be much slower than using integer math everywhere.
 On a processor like the PIC16F15356, with no hardware multiply, 8-bit word size, and a relatively low clock, doing even integer multiplication and division can be too much computation to fit into a high-rate interrupt.
 
 Using a lookup table means that we can do all of the math ahead of time.
-Usually, this means when we're writing our code, doing the computations on a proper computer and inserting a const array in the program.
+Usually, this means when we're writing our code, doing the computations on a proper computer and inserting a `const` array in the program.
 Sometimes, this can mean computing the lookup table in code, but doing it slowly outside an interrupt while there are no time-critical functions running&mdash;if the lookup table depends on measurements made while your code is running, for example.
 
 A lookup table doesn't necessarily have to be a direct representation of a waveform either.
@@ -124,7 +125,7 @@ If you needed to actually compute sines on a microcontroller, you'd typically in
 
 
 The DAC output has a high source impedance, and so it should be unity buffered; as the output is a stepped sine wave, it must also be filtered to remove harmonics.
-However, here a single RC filter stage suffices to smooth the waveform sufficently.
+However, here a single RC filter stage suffices to smooth the waveform sufficiently.
 
 The lookup table can be implemented using either a fixed time reference and a desired output at each timestep, or using fixed voltage offsets and varying timesteps between output values.
 
@@ -201,7 +202,7 @@ Using a fixed time delta simplifies this on a low-power microcontroller, as the 
 **Practical Considerations:**
 
 There's a few things to note here on how to actually implement a lookup table method like this.
-The first is that looking at the example tones above, they're square, blocky, and not very similar to the underlying sine wave; here it's intentional for ullustrative purposes, but that's not what you want if you're trying to generate an actual sine-like output.
+The first is that looking at the example tones above, they're square, blocky, and not very similar to the underlying sine wave; here it's intentional for illustrative purposes, but that's not what you want if you're trying to generate an actual sine-like output.
 
 Using the fixed-value variable-time approach will scale to be as good as your DAC resolution allows, and you'll only have to worry about running updates too quickly.
 Using a fixed-time update is more flexible in terms of tuning, where the natural way to improve signal quality is to increase the update rate.
@@ -222,7 +223,7 @@ Another note: depending on your particular microcontroller, if you have multiple
 
 Generation of multiple tones at once can be accomplished by computing two tones, adding them in software, and then using the result to set the DAC output.
 Here, it is desirable that all tones use a single interrupt, and so this suggests using a constant time delta to discretize all of the output frequencies.
-To avoid discontinuities, each lookup table will correspond to a full cycle of a sine wave at a given frequency, resulting in lookup tables of differing lengths as the frquency changes.
+To avoid discontinuities, each lookup table will correspond to a full cycle of a sine wave at a given frequency, resulting in lookup tables of differing lengths as the frequency changes.
 An index into each lookup table will then need to be tracked separately, with each being incremented at a common rate.
 
 This might look something like
@@ -256,10 +257,10 @@ Second, let's talk about that math, because there's a lot of it, and you need th
 
 #### The Goertzel Algorithm
 
-Most engineers are at least familiar with the concept of a Fast Fourier Transform (FFT), which takes in a time-varying signal, and outputs a set of amplitudes for each possible frequency[^nyquist].
+Most engineers are at least familiar with the concept of a Fast Fourier Transform (FFT), which takes in a time-varying signal, and outputs a set of amplitudes for each possible frequency[^Nyquist].
 However, calculating the full FFT (even though it's "fast"), is still very math-intensive.
 If you're only interested in detecting a small number of frequencies out of the many possible frequencies, the Goertzel Algorithm is much more efficient in terms of total operations.
-[^nyquist]: Frequencies from \\(0\\) to \\(F_\mathrm{s}/2\\), since any frequency above that cannot be detected because of the Nyquist Theorem.
+[^Nyquist]: Frequencies from \\(0\\) to \\(F_\mathrm{s}/2\\), since any frequency above that cannot be detected because of the Nyquist Theorem.
 
 As with an FFT, the algorithm works with blocks of samples, so let's define some parameters:
 
@@ -373,7 +374,7 @@ for (uint8_t i = 0; i < F; i++){
            (( ((Q1[i]*Q2[i])>>b) * C[i])>>b);
 }
 ```
-Where the final term is bitshifted twice to maintain scaling.
+Where the final term is bit shifted twice to maintain scaling.
 
 {{% notice note %}}
 At this point, if you have a 32-bit microcontroller and it has a hardware multiply instruction (e.g. the Tiva), you're set! fixed-point integer math should mean that this algorithm is fast enough to run real-time, running one sample update each time you make a measurement.  Unfortunately, the same cannot be said for an 8-bit PIC with no hardware multiply.
@@ -473,7 +474,7 @@ else bitTest |= (~Qn[2].i) << 1;
 For positive numbers, the leading bits will be `0`, so we can simply or the number to find the highest bit that was set.
 For negative numbers, the leading bits are `1`, and so we need to find the last bit that is set before the first leading zero (due to the two's complement representation and needing to keep a sign bit).  We do this by inverting the bits and left-shifting by one, then combining with `bitTest`.
 
-After doing this for all frequencies, we know the maximum size of all of the \\(Q\\), and so we can compute a bitshift based on the largest:
+After doing this for all frequencies, we know the maximum size of all of the \\(Q\\), and so we can compute a bit shift based on the largest:
 ```C
 // Compute shift from highest bit that is set
 if (bitTest & (1 << 15)) shift = 8;
@@ -503,9 +504,9 @@ Qn[1] = 0;
 Qn[2] = 0;
 ```
 And now you can inspect `M` to figure out which, if any, frequencies are present.
-Note that for speed, everything is explicitly defined&mdash;nowhere do we reference an array with a nonconstant index, except when getting measurements in and out of the `data` buffer.
+Note that for speed, everything is explicitly defined&mdash;nowhere do we reference an array with a non-constant index, except when getting measurements in and out of the `data` buffer.
 This means that yes, your code will involve lots of copies of the same code with different literal indices inserted.
-As you'd be generating these tables over and over again to adjust and debug, I'd suggest using Python or Matlab and code templates to statically generate your copy-pasted code on demand.
+As you'd be generating these tables over and over again to adjust and debug, I'd suggest using Python or MATLAB and code templates to statically generate your copy-pasted code on demand.
 That way, you can debug the structure of the code once, and then automatically generate lookup tables, `Qn` constants, and so on as you change frequencies, number of distinct frequencies, and so on.
 
 ### Tradeoffs

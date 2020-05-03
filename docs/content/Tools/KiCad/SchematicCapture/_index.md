@@ -4,9 +4,10 @@ date: 2020-01-10T15:16:30-08:00
 weight: 5
 draft: false
 ---
+<!-- spellcheck: off -->
 
 ## Eeschema
-EEschema is KiCad's schematic capture and annotation tool; this is where you'll be drawing your schematics by placing components and hooking them up.
+Eeschema is KiCad's schematic capture and annotation tool; this is where you'll be drawing your schematics by placing components and hooking them up.
 If you haven't already, start or open a project to hold the schematic.
 
 Before stepping through this tutorial, download the `teensy.lib` symbol library from https://github.com/XenGi/teensy_library.
@@ -94,7 +95,7 @@ In general, it is recommended to use a grid of 50.0 mils for the schematic sheet
 
 1. Add another component, this time `Conn_01x03_Male`.  This is a generic 3-pin connector.
 
-1. Organise all components on your schematic sheet as shown below.
+1. Organize all components on your schematic sheet as shown below.
 
 ![Component layout image](layout_1.png)
 

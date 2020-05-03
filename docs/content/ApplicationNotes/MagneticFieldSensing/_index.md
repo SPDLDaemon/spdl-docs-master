@@ -5,6 +5,7 @@ weight = 5
 toc = true
 katex = true
 +++
+<!-- spellcheck: off -->
 
 If this looks overly mathematical, don’t worry, you can certainly skip the math and get something working by trial and error as is commonly done. If you take this approach, you still might want to check out the section on matching your coil resonance to the track frequency to minimize noise picked up from other sources. Either way, it’s usually helpful to understand the underlying physics when it comes to troubleshooting or improving your sensors. Also, some quick, back of the envelope calculations can often get you in the ballpark a lot quicker than random experimentation.
 
@@ -53,7 +54,7 @@ where \\(A\\) is the coil area, \\(N\\) the number of turns, and \\(l\\) the len
 
 For a practical coil that may have a length similar in magnitude to the diameter, this is only an approximation good to within a factor of 2 or so. To increase the inductance, inductors are often wound around core materials. These cores effectively amplify the magnetic field (and therefore inductance), by anywhere from factors of 10s to 1000s. Iron is commonly used at low frequencies, and ferrite is used at higher frequencies.[^ferrite]
 
-[^ferrite]: Ferrite has much lower losses at high freqencies since it is an electrical insulator and doesn’t let internal dissipative eddy currents flow as iron does.
+[^ferrite]: Ferrite has much lower losses at high frequencies since it is an electrical insulator and doesn’t let internal dissipative eddy currents flow as iron does.
 
 Also, real inductors always have some capacitance, resulting from the numerous turns of wire wound next to one another. There is always capacitance between two neighboring wires, increasing with decreasing separation.[^capacitance] This capacitance can easily be on the order of 10s to 100s of pF for a peanut-sized coil.
 
@@ -61,7 +62,7 @@ Also, real inductors always have some capacitance, resulting from the numerous t
 
 ![Model of real inductor](inductor_model.png)
 
-You might think, 'who cares about picoFarads anyways'&mdash;that is, until you see a mysterious high frequency ringing on a coil that you thought was an ideal inductor. You may be able to see this with sensors that are not designed to resonate at the track frequency (as described below) but resonate at some other frequency (ie: the “self-resonant” frequency that depends on coil capacitance & inductance). A simple model of what this can look like can be generated in circuitmaker:
+You might think, 'who cares about picoFarads anyways'&mdash;that is, until you see a mysterious high frequency ringing on a coil that you thought was an ideal inductor. You may be able to see this with sensors that are not designed to resonate at the track frequency (as described below) but resonate at some other frequency (i.e. the “self-resonant” frequency that depends on coil capacitance & inductance). A simple model of what this can look like can be generated in circuitmaker:
 
 ![Simulation model for inductor](ringing_model.png)
 
@@ -151,7 +152,7 @@ Decreasing switching speed is entirely different from decreasing PWM frequency&m
 
 After all this work (actually, its not that bad, just a few components soldered in parallel), you’ll still probably want to amplify your signal. One feature of the resonant circuits described above is that they do not have very high output impedance&mdash;that is, if you try drawing significant currents from them it will load them down and kill the resonance. Kind of like sticking a tuning fork in a block of cheese&mdash;the fork will not continue to shake the cheese at 1&thinsp;kHz for minutes. Instead, the vibrations will quickly die down to nothing.
 
-Two ways to deal with this low-impedance sensor are to buffer the signal or simply use a non-inverting op-amp configuation (as shown below):
+Two ways to deal with this low-impedance sensor are to buffer the signal or simply use a non-inverting op-amp configuration (as shown below):
 
 ![Non inverting op-amp](noninverting_opamp.png)
 
