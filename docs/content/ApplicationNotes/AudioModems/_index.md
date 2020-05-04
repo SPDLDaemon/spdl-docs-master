@@ -7,7 +7,7 @@ katex = true
 +++
 <!-- spellcheck: off -->
 
-Normally, audio signal processing is done on a dedicated digital signals programming (DSP) chip&mdash;there's a reason that a multiply and accumulate (MAC) instruction is the first one added, since there's a lot of that to go around when processing a more complicated tone of any sort.
+Normally, audio signal processing is done on a dedicated digital signals processing (DSP) chip&mdash;there's a reason that a multiply and accumulate (MAC) instruction is the first one added, since there's a lot of that to go around when processing a more complicated tone of any sort.
 We'll start by looking at what it takes to simply generate and receive clean audio tones when using the PIC, and discuss some more involved signal processing that can improve robustness and enable multiple tone detection at the cost of significant processing time[^picisslow].
 The rest of this document assumes a PIC16F15356, although differences on different processors will be called out where relevant.
 
@@ -42,7 +42,7 @@ When used with only two frequencies, this method is called _binary_ frequency sh
 However, there's nothing magic about choosing only two frequencies: by choosing four frequencies, for example, each symbol can encode a dibit, potentially doubling the data rate.
 The limitation is the ability of the receiver to distinguish closely spaced frequencies, and the bandwidth available in the carrier.
 
-[^python]: For a reference implementation of this method in action, see the "Police Station (Silly Voices)" sketch from Monty Python's Flying Circus, Series 1, Ep. 12: _The Naked Ant_.
+[^python]: For a reference implementation of this method, see the "Police Station (Silly Voices)" sketch from Monty Python's Flying Circus, Series 1, Ep. 12: _The Naked Ant_.
 [^doppler]: Of course, this will still have issues if one of you is moving toward and away from the microphone or speaker at an appreciable fraction of the speed of sound. Or if you're traveling at relativistic speeds and time behaves differently. Or if you're trying to communicate between a Nitrogen and Helium atmosphere. But for most cases, it works great!
 
 Dual-Tone Multiple Frequency (DTMF) encoding can also be used.
@@ -54,7 +54,7 @@ If the restriction of exactly one tone from each set is relaxed, then \\(n\\) to
 If you define your own system and allow either 1 or 2 tones, this gives you \\(n(n+1)/2\\) symbols from \\(n\\) tones.
 
 [^keypad]: Yes, I said 4 columns! The characters are A, B, C, and D, although keypads actually using those buttons were phased out way before DTMF on actual phones was. The corresponding tones are often used as control signals.
-[^landline]: Let's be real, this is rapidly approaching the point of "No one but Ed has had this experience," if we're not already there yet.
+[^landline]: Let's be real, this is rapidly approaching the point of "no one but Ed has had this experience," if we're not already there yet.
 
 **Phase** modulation is the last possible modulation, as the description of the sine wave only has three parameters.
 Phase is only defined with respect to another reference&mdash;the phase of a single sine wave in isolation isn't well defined.
@@ -115,10 +115,10 @@ Even on chips with floating-point implemented in hardware, this will be much slo
 On a processor like the PIC16F15356, with no hardware multiply, 8-bit word size, and a relatively low clock, doing even integer multiplication and division can be too much computation to fit into a high-rate interrupt.
 
 Using a lookup table means that we can do all of the math ahead of time.
-Usually, this means when we're writing our code, doing the computations on a proper computer and inserting a `const` array in the program.
+Usually, this means doing the computations when we're writing our code, on a proper computer, and inserting a `const` array in the program.
 Sometimes, this can mean computing the lookup table in code, but doing it slowly outside an interrupt while there are no time-critical functions running&mdash;if the lookup table depends on measurements made while your code is running, for example.
 
-A lookup table doesn't necessarily have to be a direct representation of a waveform either.
+A lookup table doesn't necessarily have to be a direct representation of a repeating waveform either.
 If you needed to actually compute sines on a microcontroller, you'd typically include a lookup table `sineTable` such that `sineTable[d]` held the value of \\(\sin \frac{d}{2\pi}\\), for example.
 {{% /notice %}}
 
@@ -214,8 +214,10 @@ Any time you're setting up a control or signal processing interrupt like this, m
 
 What's the lower bound on how fast we want to go?
 This one is less of a bound an more a guideline.
-You want to make sure you're running your output loop fast enough that the resulting wave looks like you want it to.
+Fundamentally, you want to make sure you're running your output loop fast enough that the resulting wave looks like you want it to.
 A rough rule of thumb here is to choose an update rate at least 10 times faster than the highest frequency you want to use, as long as that's feasible with respect to your upper bound.
+If you can run the update faster, consider going fast enough that your lookup table contains each output value at least once&mdash;for example, `table[N] = { 0, 1, 2, 3, 3, 2, 1, 0, ...}` rather than `table[N] = { 0, 2, 3, 2, 0, -2, -3, ...}`.
+This is a better indicator that you're representing the desired waveform smoothly; depending on the specific output requirements, acceptable performance may need an even faster update, but this is a good start.
 
 Another note: depending on your particular microcontroller, if you have multiple lookup tables, it can be significantly faster to define each table as a 1-D array, rather than combining them as a single 2-D array&mdash;array lookups using a variable as the index can be slow.
 
@@ -234,7 +236,7 @@ static const float table1[4] = {0.0, 0.5, 0.0, -0.5};
 static char index0 = 0;
 static char index1 = 0;
 ```
-Note that each individual lookup table is scaled so that the sum still fits within our available output range.  Another options would be to add more precise values initially, but scale before actually generating the output.
+Note that each individual lookup table is scaled so that the sum still fits within our available output range.  Another option would be to add more precise values initially, but scale before actually generating the output.
 The output code might look something like
 ```C
 output = table0[index0] + table1[index1];
@@ -272,7 +274,7 @@ As with an FFT, the algorithm works with blocks of samples, so let's define some
 
 **Sample rate** must be selected to satisfy at minimum the usual Nyquist constraints: \\(F\_\mathrm{s}\\) must be at least twice the frequency of the highest frequency you want to detect. You may, however, get better results by increasing the sampling rate further. For the sake of demonstration, let's assume we'll sample at {{< units 4 kHz >}}.
 
-**Block Size** is essentially a balance between specificity in signal and duration of the sample[^uncertainty].
+**Block Size** is essentially a balance between specificity in detected frequency and length of the sample[^uncertainty].
 \\(N\\) directly controls frequency precision, as for a {{< units 4 kHz >}} sample rate, choosing \\(N=100\\) will mean each response bin is {{< units 40 Hz >}}, and frequencies less than this distance apart will be essentially impossible to distinguish.
 
 Of course, increasing \\(N\\) to increase the frequency discrimination increases the sampling time (and in our case, much more so the processing time).
@@ -305,6 +307,7 @@ At each sample \\(x\\), update the values as follows:
 
 $$ \begin{aligned} Q_0 &= C \cdot Q_1 - Q_2 + x \\\ Q_2 &= Q_1 \\\ Q1 &= Q_0 \end{aligned} $$
 
+**Block magnitudes:**
 At the end of each block, the magnitude of the target frequency can be computed as
 
 $$ M = Q_1^2 + Q_2^2 - Q_1 \cdot Q_2 \cdot C  $$
@@ -387,7 +390,7 @@ The PIC16F15356, on the other hand, doesn't even have an 8-bit multiply instruct
 
 However, we can make a lot of optimizations that allow us to improve the processing time to where this could be feasible for low-baud rate communication with a complex symbol set to keep a reasonable data rate[^cool].
 
-[^cool]: Plus, it's cool! definitely pushing the hardware is an interesting way to figure out what is and isn't possible.
+[^cool]: Plus, it's cool! Definitely pushing the hardware is an interesting way to figure out what is and isn't possible.
 
 Let's start with the fixed-point scaling, \\(b\\).
 We definitely want this to be 8 in this case&mdash;the PIC is an 8-bit processor, and handling things in 8-bit chunks is a natural fit. The precomputed cosine term ends up being _about_ 1 for most target frequencies, and so using an 8 bit scaling factor means we can represent it at taking 8 bits.
@@ -418,7 +421,7 @@ In C, a `union` is essentially just telling the compiler you want to treat an ar
 
 Each step of processing involves multiplying \\(Q_1 \cdot C\\), which is a 16-bit and an 8-bit[^bitsish] number, resulting in a 24-bit number.  Rather than shifting the result by 8 bits, we'll define a custom type as follows:
 
-[^bitsish]: Well, 8-_ish_ bits.  But even though it's often actually 9-bits to represent (because \\(C = 2\cos\omega\\)), it's one of the smaller possible 9-bit numbers, and so in practice treating it as 8 for the purposes of calculating scaling works out fine.
+[^bitsish]: Well, 8-_ish_ bits.  But even though it's often actually 9-bits to represent (because \\(C = 2S\cos\omega \approx 2*256 = 512\\)), it's one of the smaller possible 9-bit numbers, and so in practice treating it as 8 for the purposes of calculating scaling works out fine.
 
 ```C
 struct ltype {
