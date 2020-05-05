@@ -213,11 +213,11 @@ Another constraint comes from processing: even though simply copying a table val
 Any time you're setting up a control or signal processing interrupt like this, make sure you time it to see what fraction of CPU time it's consuming.
 
 What's the lower bound on how fast we want to go?
-This one is less of a bound an more a guideline.
+This one is less of a bound and more of a guideline.
 Fundamentally, you want to make sure you're running your output loop fast enough that the resulting wave looks like you want it to.
 A rough rule of thumb here is to choose an update rate at least 10 times faster than the highest frequency you want to use, as long as that's feasible with respect to your upper bound.
 If you can run the update faster, consider going fast enough that your lookup table contains each output value at least once&mdash;for example, `table[N] = { 0, 1, 2, 3, 3, 2, 1, 0, ...}` rather than `table[N] = { 0, 2, 3, 2, 0, -2, -3, ...}`.
-This is a better indicator that you're representing the desired waveform smoothly; depending on the specific output requirements, acceptable performance may need an even faster update, but this is a good start.
+This is a better indicator that you're representing the desired waveform smoothly; depending on the specific output requirements, acceptable performance may need an even faster update, but these rough guidelines can give you a good place to start.
 
 Another note: depending on your particular microcontroller, if you have multiple lookup tables, it can be significantly faster to define each table as a 1-D array, rather than combining them as a single 2-D array&mdash;array lookups using a variable as the index can be slow.
 
@@ -439,7 +439,7 @@ static RESULT_T Qhold; // Holding space for intermediate calculations
 ```
 
 The `ltype` struct defines a 4-byte region of memory, as an 8-bit, 16-bit, and 8-bit chunk in series.
-As the PIC is little-endian, the least-significant bytes come first, so `trunc` is the LSBs we thro away, `intval` is the final 16-bit result we're after after shifting by our 8-bit scale factor, and `space` is ideally extra space that never holds data.
+As the PIC is little-endian, the least-significant bytes come first, so `trunc` is the LSBs we throw away, `intval` is the final 16-bit result we're after after shifting by our 8-bit scale factor, and `space` is ideally extra space that never holds data.
 The `RESULT_T` type is a union, so we can treat the 4-byte region as a single 32-bit type using `l`, or as a struct using `hold`.
 So we do the multiplication, and put the result into `Qhold.l`, treating the memory location as a long.
 We then pull out the scaled result by accessing `Qhold.hold.intval`, and proceed with the update:
