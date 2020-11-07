@@ -13,7 +13,7 @@ The figure below shows the internal circuity of the joystick.
 
 ![Equivalent joystick circuit](joystick_equiv_circuit.png)
 
-You can then apply teh resistor divider equation to get the voltages `VRx` and `VRy`:
+You can then apply the resistor divider equation to get the voltages `VRx` and `VRy`:
 
 $$ V_i = V_\mathrm{CC} \frac{V_\mathrm{sweep}}{V_\mathrm{total}}$$
 
@@ -47,7 +47,7 @@ That is,
 
 $$ \mathbf{s} = \begin{bmatrix} x \\\ y \end{bmatrix}, \mathbf{j} = \begin{bmatrix} C_x \\\ C_y \end{bmatrix}, $$
 
-where \\(C_i\\) are the measured values from the ADC in counts, and \\(x\\) and \\(y\\) are the coodinates of the player.
+where \\(C_i\\) are the measured values from the ADC in counts, and \\(x\\) and \\(y\\) are the coordinates of the player.
 
 In order to get \\(\mathbf{u}\\) we can perform a linear transformation on \\(\mathbf{j}\\) by multiplication with a scaling matrix \\(\mathbf{M}\\) and adding an offset vector \\(\mathbf{b}\\):
 
@@ -80,7 +80,7 @@ In mathematical terms:
 $$ \mathbf{s}_t = \mathbf{u}_t + \mathbf{s}_0 $$
 
 where \\(\mathbf{s}_t\\) and \\(\mathbf{u}_t\\) represent the state and control vectors at time \\(t\\), and \\(\mathbf{s}_0\\) the initial state.
-Essentially, this means that the player will be positioned on teh screen wherever the joystick is.
+Essentially, this means that the player will be positioned on the screen wherever the joystick is.
 If the joystick is moved to the extreme left, the player goes to the extreme left.
 When the joystick snaps back to center, the player snaps back to center as well.
 This type of control is not seen often.
@@ -134,7 +134,7 @@ This ends up looking like this:
 
 ![Simple linear deadband](linDB.png)
 
-Notice that while small inputs nearzero don't accidentally move the player, the user also can't make very small movements.
+Notice that while small inputs near zero don't accidentally move the player, the user also can't make very small movements.
 The output suddenly jumps from 0 to a value when leaving the deadband, so the user can never command values smaller than this.
 
 To fix this, we can scale the function outside the deadband so it smoothly goes to the same value at the ends from zero:
@@ -146,7 +146,7 @@ Setting \\(f(x)=x\\) gives us a scaled linear deadband, like so:
 
 ![Scaled linear deadband](scaleLinDB.png)
 
-Now when teh deadband ends, the user can still apply arbitrarily small inputs if they choose to, so that's an improvement.
+Now when the deadband ends, the user can still apply arbitrarily small inputs if they choose to, so that's an improvement.
 However, this still sacrifices smoothness and precision near zero; using a cubic scaling can help with balancing range and precision.
 We define \\(c(x)\\) as follows:
 
