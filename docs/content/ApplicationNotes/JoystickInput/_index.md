@@ -31,7 +31,7 @@ These numbers are evenly distributed between two reference points against which 
 For a 10-bit ADC, like we have on the PIC, we have that {{< units "0" volt >}} is `0x00`, and \\(V_\mathrm{CC}\\) is `0x3FF`[^decimal1].
 
 [^unitless]: Since it's a pure number, it has no units, which is also partly why it makes more sense to think of it as "counts".
-[^decimal1]: That's 1023 in decimal.  Remember that \\(2^10\\) is 1024, but since 0 is a possible value, the 1024th number we can represent is 1023.
+[^decimal1]: That's 1023 in decimal.  Remember that \\(2^{10}\\) is 1024, but since 0 is a possible value, the 1024th number we can represent is 1023.
 
 This numeric value then has to be converted to a "control" by your code.
 Thinking in counts can make your life easier here.
@@ -112,7 +112,7 @@ The only caveat is to ensure \\(\Delta t\\) is small enough to make the motion a
 ### Usability
 
 If you've tried experimenting with the \\(\mathbf{M}\\) and \\(\mathbf{b}\\) matrices, and you still can't find a control mapping you're happy with, you may want to look at some more advanced mappings to help usability.
-When you've trying to control things with a velocity-mapped controller, it's typically the case that
+When you're trying to control things with a velocity-mapped controller, it's typically the case that
 1. When you're near zero, you want to remain still, even if your hand is jittering a little, or is busy moving the other joystick axis.
 2. When you're near zero, you want more precise control over small velocities.
 
@@ -127,7 +127,7 @@ These are outside the scope of this note, but simply to point out that when mapp
 
 The simplest way to damp out micromotions near zero (when the user wants to be still) is to simply ignore any value with small absolute value:
 
-$$ d(u) = \begin{cases} 0 & |u| \lt \delta  \\\ u & |u| \geq \delta \end{cases} $$
+$$ d(x) = \begin{cases} 0 & |x| \lt \delta  \\\ x & |x| \geq \delta \end{cases} $$
 
 where \\(\delta\\) is half the total width of the deadband.
 This ends up looking like this:
@@ -136,6 +136,8 @@ This ends up looking like this:
 
 Notice that while small inputs near zero don't accidentally move the player, the user also can't make very small movements.
 The output suddenly jumps from 0 to a value when leaving the deadband, so the user can never command values smaller than this.
+
+#### Scaled Deadband
 
 To fix this, we can scale the function outside the deadband so it smoothly goes to the same value at the ends from zero:
 
@@ -147,13 +149,17 @@ Setting \\(f(x)=x\\) gives us a scaled linear deadband, like so:
 ![Scaled linear deadband](scaleLinDB.png)
 
 Now when the deadband ends, the user can still apply arbitrarily small inputs if they choose to, so that's an improvement.
+
+#### Cubic Scaling
 However, this still sacrifices smoothness and precision near zero; using a cubic scaling can help with balancing range and precision.
 We define \\(c(x)\\) as follows:
 
 $$ c(x) = \omega x^3 + (1-\omega)x $$
-where \\(\omega \in [0,1]\\) is a scaling factor; for \\(\omega=0\\), we have \\(c(x)=x\\) and get a straight mapping of input to output.  As \\(\omega\\) is increased, the function approaches \\(x^3\\), reducing sensitivity near zero:
+where \\(\omega \in [0,1]\\) can be thought of as a blending factor, mixing linear and cubic responses; for \\(\omega=0\\), we have \\(c(x)=x\\) and get a straight mapping of input to output.  As \\(\omega\\) is increased, the function approaches \\(x^3\\), reducing sensitivity near zero:
 
 ![Cubic mappings with scaling factor](cubic.png)
+
+#### Scaled Cubic Deadband
 
 But now we've lost the deadband. However, it so happens that this particular function is, in fact, a continuous odd function, so we can just plug it back into \\(g(x)\\) in place of \\(f(x)\\), giving us a scaled cubic deadband:
 
